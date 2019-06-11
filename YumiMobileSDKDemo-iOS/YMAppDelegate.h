@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  YMAppDelegate.h
 //  YumiMobileSDKDemo-iOS
 //
 //  Created by Michael Tang on 2019/6/11.
@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
-@interface ViewController : UIViewController
+@interface YMAppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic) UIWindow *window;
 
 @end
 

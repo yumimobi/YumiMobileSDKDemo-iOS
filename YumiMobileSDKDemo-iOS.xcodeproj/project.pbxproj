@@ -7,29 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D691C5022AF5040000D0E0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D691C4F22AF5040000D0E0A /* AppDelegate.m */; };
-		6D691C5322AF5040000D0E0A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D691C5222AF5040000D0E0A /* ViewController.m */; };
+		6D691C5022AF5040000D0E0A /* YMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D691C4F22AF5040000D0E0A /* YMAppDelegate.m */; };
 		6D691C5622AF5040000D0E0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D691C5422AF5040000D0E0A /* Main.storyboard */; };
 		6D691C5922AF5040000D0E0A /* YumiMobileSDKDemo_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D691C5722AF5040000D0E0A /* YumiMobileSDKDemo_iOS.xcdatamodeld */; };
 		6D691C5B22AF5040000D0E0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D691C5A22AF5040000D0E0A /* Assets.xcassets */; };
 		6D691C5E22AF5040000D0E0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D691C5C22AF5040000D0E0A /* LaunchScreen.storyboard */; };
 		6D691C6122AF5040000D0E0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D691C6022AF5040000D0E0A /* main.m */; };
+		6DB514FB22AF544F004A5A4F /* YMInitializeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB514E622AF544F004A5A4F /* YMInitializeModel.m */; };
+		6DB514FC22AF544F004A5A4F /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB514EA22AF544F004A5A4F /* UIView+Toast.m */; };
+		6DB514FE22AF544F004A5A4F /* YMInitializeInfoUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB514EE22AF544F004A5A4F /* YMInitializeInfoUserDefaults.m */; };
+		6DB5151F22AF5EDF004A5A4F /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5151E22AF5EDF004A5A4F /* CALayer+Transition.m */; };
+		6DB5152A22AF6206004A5A4F /* YMAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DB5152222AF6205004A5A4F /* YMAppViewController.xib */; };
+		6DB5152B22AF6206004A5A4F /* YMAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5152522AF6205004A5A4F /* YMAppViewController.m */; };
+		6DB5152C22AF6206004A5A4F /* YMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5152622AF6205004A5A4F /* YMViewController.m */; };
+		6DB5152D22AF6206004A5A4F /* YMNativeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DB5152722AF6206004A5A4F /* YMNativeView.xib */; };
+		6DB5152E22AF6206004A5A4F /* YMNativeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5152822AF6206004A5A4F /* YMNativeView.m */; };
 		884FFFC1728FCB971DF08FF2 /* libPods-YumiMobileSDKDemo-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26646733205B61C7FB7C5D13 /* libPods-YumiMobileSDKDemo-iOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		26646733205B61C7FB7C5D13 /* libPods-YumiMobileSDKDemo-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YumiMobileSDKDemo-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D691C4B22AF503F000D0E0A /* YumiMobileSDKDemo-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YumiMobileSDKDemo-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D691C4E22AF503F000D0E0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		6D691C4F22AF5040000D0E0A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6D691C5122AF5040000D0E0A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6D691C5222AF5040000D0E0A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6D691C4E22AF503F000D0E0A /* YMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YMAppDelegate.h; sourceTree = "<group>"; };
+		6D691C4F22AF5040000D0E0A /* YMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YMAppDelegate.m; sourceTree = "<group>"; };
 		6D691C5522AF5040000D0E0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6D691C5822AF5040000D0E0A /* YumiMobileSDKDemo_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YumiMobileSDKDemo_iOS.xcdatamodel; sourceTree = "<group>"; };
 		6D691C5A22AF5040000D0E0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D691C5D22AF5040000D0E0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D691C5F22AF5040000D0E0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D691C6022AF5040000D0E0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6DB514E622AF544F004A5A4F /* YMInitializeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMInitializeModel.m; sourceTree = "<group>"; };
+		6DB514E722AF544F004A5A4F /* YMInitializeInfoUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMInitializeInfoUserDefaults.h; sourceTree = "<group>"; };
+		6DB514E922AF544F004A5A4F /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		6DB514EA22AF544F004A5A4F /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		6DB514ED22AF544F004A5A4F /* YMInitializeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMInitializeModel.h; sourceTree = "<group>"; };
+		6DB514EE22AF544F004A5A4F /* YMInitializeInfoUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMInitializeInfoUserDefaults.m; sourceTree = "<group>"; };
+		6DB514EF22AF544F004A5A4F /* YumiCommonHeaderFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YumiCommonHeaderFile.h; sourceTree = "<group>"; };
+		6DB5151D22AF5EDF004A5A4F /* CALayer+Transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Transition.h"; sourceTree = "<group>"; };
+		6DB5151E22AF5EDF004A5A4F /* CALayer+Transition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
+		6DB5152222AF6205004A5A4F /* YMAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YMAppViewController.xib; path = "YumiMobileSDKDemo-iOS/Demo/YMAppViewController.xib"; sourceTree = SOURCE_ROOT; };
+		6DB5152322AF6205004A5A4F /* YMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMViewController.h; path = "YumiMobileSDKDemo-iOS/Demo/YMViewController.h"; sourceTree = SOURCE_ROOT; };
+		6DB5152422AF6205004A5A4F /* YMNativeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMNativeView.h; path = "YumiMobileSDKDemo-iOS/Demo/YMNativeView.h"; sourceTree = SOURCE_ROOT; };
+		6DB5152522AF6205004A5A4F /* YMAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAppViewController.m; path = "YumiMobileSDKDemo-iOS/Demo/YMAppViewController.m"; sourceTree = SOURCE_ROOT; };
+		6DB5152622AF6205004A5A4F /* YMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMViewController.m; path = "YumiMobileSDKDemo-iOS/Demo/YMViewController.m"; sourceTree = SOURCE_ROOT; };
+		6DB5152722AF6206004A5A4F /* YMNativeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YMNativeView.xib; path = "YumiMobileSDKDemo-iOS/Demo/YMNativeView.xib"; sourceTree = SOURCE_ROOT; };
+		6DB5152822AF6206004A5A4F /* YMNativeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMNativeView.m; path = "YumiMobileSDKDemo-iOS/Demo/YMNativeView.m"; sourceTree = SOURCE_ROOT; };
+		6DB5152922AF6206004A5A4F /* YMAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAppViewController.h; path = "YumiMobileSDKDemo-iOS/Demo/YMAppViewController.h"; sourceTree = SOURCE_ROOT; };
 		E1429F12022620E1852F4AF9 /* Pods-YumiMobileSDKDemo-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumiMobileSDKDemo-iOS.release.xcconfig"; path = "Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		EE975C95BBDD187E32643DE2 /* Pods-YumiMobileSDKDemo-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumiMobileSDKDemo-iOS.debug.xcconfig"; path = "Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,10 +99,9 @@
 		6D691C4D22AF503F000D0E0A /* YumiMobileSDKDemo-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				6D691C4E22AF503F000D0E0A /* AppDelegate.h */,
-				6D691C4F22AF5040000D0E0A /* AppDelegate.m */,
-				6D691C5122AF5040000D0E0A /* ViewController.h */,
-				6D691C5222AF5040000D0E0A /* ViewController.m */,
+				6DB514E022AF544F004A5A4F /* Demo */,
+				6D691C4E22AF503F000D0E0A /* YMAppDelegate.h */,
+				6D691C4F22AF5040000D0E0A /* YMAppDelegate.m */,
 				6D691C5422AF5040000D0E0A /* Main.storyboard */,
 				6D691C5A22AF5040000D0E0A /* Assets.xcassets */,
 				6D691C5C22AF5040000D0E0A /* LaunchScreen.storyboard */,
@@ -88,6 +110,54 @@
 				6D691C5722AF5040000D0E0A /* YumiMobileSDKDemo_iOS.xcdatamodeld */,
 			);
 			path = "YumiMobileSDKDemo-iOS";
+			sourceTree = "<group>";
+		};
+		6DB514E022AF544F004A5A4F /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				6DB514E222AF544F004A5A4F /* Tools */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		6DB514E222AF544F004A5A4F /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				6DB5151922AF5ED1004A5A4F /* Layer+Transition */,
+				6DB514E822AF544F004A5A4F /* Toast */,
+				6DB514ED22AF544F004A5A4F /* YMInitializeModel.h */,
+				6DB514E622AF544F004A5A4F /* YMInitializeModel.m */,
+				6DB514E722AF544F004A5A4F /* YMInitializeInfoUserDefaults.h */,
+				6DB514EE22AF544F004A5A4F /* YMInitializeInfoUserDefaults.m */,
+				6DB514EF22AF544F004A5A4F /* YumiCommonHeaderFile.h */,
+				6DB5152922AF6206004A5A4F /* YMAppViewController.h */,
+				6DB5152522AF6205004A5A4F /* YMAppViewController.m */,
+				6DB5152222AF6205004A5A4F /* YMAppViewController.xib */,
+				6DB5152422AF6205004A5A4F /* YMNativeView.h */,
+				6DB5152822AF6206004A5A4F /* YMNativeView.m */,
+				6DB5152722AF6206004A5A4F /* YMNativeView.xib */,
+				6DB5152322AF6205004A5A4F /* YMViewController.h */,
+				6DB5152622AF6205004A5A4F /* YMViewController.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		6DB514E822AF544F004A5A4F /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				6DB514E922AF544F004A5A4F /* UIView+Toast.h */,
+				6DB514EA22AF544F004A5A4F /* UIView+Toast.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		6DB5151922AF5ED1004A5A4F /* Layer+Transition */ = {
+			isa = PBXGroup;
+			children = (
+				6DB5151D22AF5EDF004A5A4F /* CALayer+Transition.h */,
+				6DB5151E22AF5EDF004A5A4F /* CALayer+Transition.m */,
+			);
+			path = "Layer+Transition";
 			sourceTree = "<group>";
 		};
 		FC0C33C48F3F158C4A3F5F10 /* Frameworks */ = {
@@ -159,6 +229,8 @@
 			files = (
 				6D691C5E22AF5040000D0E0A /* LaunchScreen.storyboard in Resources */,
 				6D691C5B22AF5040000D0E0A /* Assets.xcassets in Resources */,
+				6DB5152A22AF6206004A5A4F /* YMAppViewController.xib in Resources */,
+				6DB5152D22AF6206004A5A4F /* YMNativeView.xib in Resources */,
 				6D691C5622AF5040000D0E0A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,6 +247,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS-resources.sh",
+				"${PODS_ROOT}/YumiMediationDebugCenter-iOS/Resources/YumiMediationDebugCenter.bundle",
 				"${PODS_ROOT}/YumiMediationSDK/Resources/YumiMediationSDK.bundle",
 				"${PODS_ROOT}/YumiMediationSDK/Resources/YumiAdsSDK.bundle",
 				"${PODS_ROOT}/YumiMediationSDK/Resources/ZplayMuteListener.bundle",
@@ -183,6 +256,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiMediationDebugCenter.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiMediationSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiAdsSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZplayMuteListener.bundle",
@@ -221,10 +295,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D691C5322AF5040000D0E0A /* ViewController.m in Sources */,
-				6D691C5022AF5040000D0E0A /* AppDelegate.m in Sources */,
+				6D691C5022AF5040000D0E0A /* YMAppDelegate.m in Sources */,
+				6DB5152E22AF6206004A5A4F /* YMNativeView.m in Sources */,
+				6DB5151F22AF5EDF004A5A4F /* CALayer+Transition.m in Sources */,
+				6DB514FB22AF544F004A5A4F /* YMInitializeModel.m in Sources */,
+				6DB514FC22AF544F004A5A4F /* UIView+Toast.m in Sources */,
 				6D691C6122AF5040000D0E0A /* main.m in Sources */,
 				6D691C5922AF5040000D0E0A /* YumiMobileSDKDemo_iOS.xcdatamodeld in Sources */,
+				6DB5152C22AF6206004A5A4F /* YMViewController.m in Sources */,
+				6DB5152B22AF6206004A5A4F /* YMAppViewController.m in Sources */,
+				6DB514FE22AF544F004A5A4F /* YMInitializeInfoUserDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +381,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -354,7 +434,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -370,6 +450,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L5UE3EGW93;
 				INFOPLIST_FILE = "YumiMobileSDKDemo-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -389,6 +470,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = L5UE3EGW93;
 				INFOPLIST_FILE = "YumiMobileSDKDemo-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
