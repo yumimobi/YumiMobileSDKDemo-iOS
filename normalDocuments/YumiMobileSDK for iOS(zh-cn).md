@@ -1,4 +1,4 @@
-* [YumiMediationSDK iOS](#yumimediationsdk-ios)   
+* [YumiMobileSDK iOS](#yumimobilesdk-ios)   
    * [概述](#概述)   
    * [开发环境配置](#开发环境配置)   
       * [App Transport Security](#app-transport-security)
@@ -39,7 +39,7 @@
       * [图示](#图示)   
       * [TEST ID](#TEST-ID)
 
-# YumiMediationSDK iOS
+# YumiMobileSDK iOS
 
 ## 概述
 
@@ -78,13 +78,13 @@
 
 - CocoaPods (推荐)
 
-   CocoaPods 是 iOS 的依赖管理工具，使用它可以轻松管理 YumiMediationSDK。
+   CocoaPods 是 iOS 的依赖管理工具，使用它可以轻松管理 YumiMobileSDK
 
    打开您工程的 Podfile，选择下面其中一种方式添加到您应用的 target。
 
    如果您是初次使用 CocoaPods，请查阅 [CocoaPods Guides](https://guides.cocoapods.org/using/using-cocoapods.html) 。
 
-   - 如果您只需要 YumiMediationSDK 
+   - 如果您只需要 YumiMobileSDK 
 
      ```ruby
      pod "YumiMediationSDK"
@@ -98,16 +98,16 @@
 
    最终通过 workspace 打开工程。
 
-- 手动集成 YumiMediationSDK
+- 手动集成 YumiMobileSDK
 
-   1. 下载 ([SDKDownloadPage-iOS](https://github.com/yumimobi/YumiMobileSDKDemo-iOS/blob/master/normalDocuments/iOSDownloadPage.md)) YumiMediationSDK 及您所需的三方平台
+   1. 下载 ([SDKDownloadPage-iOS](https://github.com/yumimobi/YumiMobileSDKDemo-iOS/blob/master/normalDocuments/iOSDownloadPage.md)) YumiMobileSDK
 
-   2. 添加 YumiMediationSDK 及您所需的三方平台到您的工程
+   2. 添加 YumiMobileSDK 到您的工程
 
       <img src="resources/addFiles.png" width="280" height="320"> 
 
       <img src="resources/addFiles-2.png" width="500" height="400"> 
-
+    
    3. 配置脚本
 
       按照如图所示步骤，添加 YumiMediationSDKConfig.xcconfig
@@ -607,7 +607,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
 
 如果您想调试平台key是否有广告返回，可选择调试模式。
 
-调用调试模式之前，请保证您的 app 已经初始化 YumiMediationSDK 。
+调用调试模式之前，请保证您的 app 已经初始化 YumiMobileSDK 。
 
 ### 接入方式
 
@@ -622,7 +622,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
 
   将下载好的``YumiMediationDebugCenter-iOS.framework``加入``Xcode``工程即可。 
 
-  [**DownloadPage-iOS**](https://github.com/yumimobi/YumiMediationSDKDemo-iOS/blob/master/normalDocuments/iOSDownloadPage.md)
+  [**DownloadPage-iOS**](https://github.com/yumimobi/YumiMobileSDKDemo-iOS/blob/master/normalDocuments/iOSDownloadPage.md)
 
 ### 调用调试模式
 
