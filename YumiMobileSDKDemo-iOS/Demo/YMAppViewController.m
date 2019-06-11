@@ -397,7 +397,7 @@ static int nativeAdNumber = 4;
                     [weakSelf.bannerView disableAutoRefresh];
                 }
                 [weakSelf.bannerView loadAd:weakSelf.switchIsSmartSize.on];
-                _bannerView.delegate = weakSelf;
+                weakSelf.bannerView.delegate = weakSelf;
                 [weakSelf showLogConsoleWith:[NSString stringWithFormat:@"initialize   banner ad placementID : %@",
                                                                         weakSelf.bannerPlacementID]
                                    adLogType:YumiMediationAdLogTypeBanner];
