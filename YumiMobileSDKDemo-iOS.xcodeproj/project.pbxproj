@@ -14,9 +14,11 @@
 		6D691C5B22AF5040000D0E0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D691C5A22AF5040000D0E0A /* Assets.xcassets */; };
 		6D691C5E22AF5040000D0E0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D691C5C22AF5040000D0E0A /* LaunchScreen.storyboard */; };
 		6D691C6122AF5040000D0E0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D691C6022AF5040000D0E0A /* main.m */; };
+		884FFFC1728FCB971DF08FF2 /* libPods-YumiMobileSDKDemo-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26646733205B61C7FB7C5D13 /* libPods-YumiMobileSDKDemo-iOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26646733205B61C7FB7C5D13 /* libPods-YumiMobileSDKDemo-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YumiMobileSDKDemo-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D691C4B22AF503F000D0E0A /* YumiMobileSDKDemo-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YumiMobileSDKDemo-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D691C4E22AF503F000D0E0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D691C4F22AF5040000D0E0A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -28,6 +30,8 @@
 		6D691C5D22AF5040000D0E0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D691C5F22AF5040000D0E0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D691C6022AF5040000D0E0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E1429F12022620E1852F4AF9 /* Pods-YumiMobileSDKDemo-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumiMobileSDKDemo-iOS.release.xcconfig"; path = "Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		EE975C95BBDD187E32643DE2 /* Pods-YumiMobileSDKDemo-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YumiMobileSDKDemo-iOS.debug.xcconfig"; path = "Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				884FFFC1728FCB971DF08FF2 /* libPods-YumiMobileSDKDemo-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25647493062852F53B95BA21 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE975C95BBDD187E32643DE2 /* Pods-YumiMobileSDKDemo-iOS.debug.xcconfig */,
+				E1429F12022620E1852F4AF9 /* Pods-YumiMobileSDKDemo-iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6D691C4222AF503F000D0E0A = {
 			isa = PBXGroup;
 			children = (
 				6D691C4D22AF503F000D0E0A /* YumiMobileSDKDemo-iOS */,
 				6D691C4C22AF503F000D0E0A /* Products */,
+				25647493062852F53B95BA21 /* Pods */,
+				FC0C33C48F3F158C4A3F5F10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +90,14 @@
 			path = "YumiMobileSDKDemo-iOS";
 			sourceTree = "<group>";
 		};
+		FC0C33C48F3F158C4A3F5F10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26646733205B61C7FB7C5D13 /* libPods-YumiMobileSDKDemo-iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -81,9 +105,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D691C6422AF5040000D0E0A /* Build configuration list for PBXNativeTarget "YumiMobileSDKDemo-iOS" */;
 			buildPhases = (
+				CCD79CE3E63CE19F9B60CEFF /* [CP] Check Pods Manifest.lock */,
 				6D691C4722AF503F000D0E0A /* Sources */,
 				6D691C4822AF503F000D0E0A /* Frameworks */,
 				6D691C4922AF503F000D0E0A /* Resources */,
+				B97B02E3C25F90655F35D9FB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,6 +164,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B97B02E3C25F90655F35D9FB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS-resources.sh",
+				"${PODS_ROOT}/YumiMediationSDK/Resources/YumiMediationSDK.bundle",
+				"${PODS_ROOT}/YumiMediationSDK/Resources/YumiAdsSDK.bundle",
+				"${PODS_ROOT}/YumiMediationSDK/Resources/ZplayMuteListener.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiMediationSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiAdsSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZplayMuteListener.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCD79CE3E63CE19F9B60CEFF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YumiMobileSDKDemo-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6D691C4722AF503F000D0E0A /* Sources */ = {
@@ -287,34 +364,38 @@
 		};
 		6D691C6522AF5040000D0E0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE975C95BBDD187E32643DE2 /* Pods-YumiMobileSDKDemo-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VG25A6M88T;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = L5UE3EGW93;
 				INFOPLIST_FILE = "YumiMobileSDKDemo-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tfeng.YumiMobileSDKDemo-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yumi.YumiMobileSDKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "DevYuMi*";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		6D691C6622AF5040000D0E0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1429F12022620E1852F4AF9 /* Pods-YumiMobileSDKDemo-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VG25A6M88T;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = L5UE3EGW93;
 				INFOPLIST_FILE = "YumiMobileSDKDemo-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tfeng.YumiMobileSDKDemo-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yumi.YumiMobileSDKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "DevYuMi*";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

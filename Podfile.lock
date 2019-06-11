@@ -1,0 +1,16 @@
+PODS:
+  - YumiMediationSDK (3.6.4)
+
+DEPENDENCIES:
+  - YumiMediationSDK
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - YumiMediationSDK
+
+SPEC CHECKSUMS:
+  YumiMediationSDK: e2b9b6d30ea624f86fbf570d775a549f7b050a59
+
+PODFILE CHECKSUM: 0f2589eb1cf48e8b99b5d46c3d4e32c4600efbf0
+
+COCOAPODS: 1.6.1
