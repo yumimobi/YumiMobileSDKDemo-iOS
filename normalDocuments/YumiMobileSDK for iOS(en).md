@@ -1,4 +1,4 @@
-* [YumiMediationSDK iOS](#yumimediationsdk-ios)  
+* [YumiMobileSDK iOS](#yumimobilesdk-ios)  
    * [Summary](#summary)       
    * [Develop Encironment Configuration](#develop-encironment-configuration)   
       * [App Transport Security](#app-transport-security)    
@@ -38,7 +38,7 @@
       * [Sample](#sample)  
       * [TEST ID](#TEST-ID)
 
-# YumiMediationSDK iOS
+# YumiMobileSDK iOS
 
 ## Summary
 
@@ -78,13 +78,13 @@
 
 - CocoaPods ( recommend )
 
-  CocoaPods is a dependency manager for ios, which will make it easy to manage YumiMediationSDK.
+  CocoaPods is a dependency manager for ios, which will make it easy to manage YumiMobileSDK.
 
   Open Podfile, add one of the following methods to target.
 
   If use CocoaPods for the first time, please view [CocoaPods Guides](https://guides.cocoapods.org/using/using-cocoapods.html).
 
-  - If need YumiMediationSDK only:
+  - If need YumiMobileSDK only:
 
     ```ruby
     pod "YumiMediationSDK"
@@ -98,10 +98,10 @@
 
   Finally, open project by workspace. 
 
-- Manually Integrating YumiMediationSDK
+- Manually Integrating YumiMobileSDK
 
-  1. Download ([SDKDownloadPage-iOS](https://github.com/yumimobi/YumiMobileSDKDemo-iOS/blob/master/normalDocuments/iOSDownloadPage.md)) YumiMediationSDK and third-party SDK which you need.
-  2. Add YumiMediationSDK and third-party SDK to your project
+  1. Download ([SDKDownloadPage-iOS](https://github.com/yumimobi/YumiMobileSDKDemo-iOS/blob/master/normalDocuments/iOSDownloadPage.md)) YumiMobileSDK.
+  2. Add YumiMobileSDK and third-party SDK to your project
 
   <img src="resources/addFiles.png" width="280" height="320"> 
 
@@ -580,7 +580,7 @@
 
 Please select debug mode if you want to test whether ad ruturn is available for an app.
 
-Please ensure your app has initialized YumiMediationSDK before calling debug mode.
+Please ensure your app has initialized YumiMobileSDK before calling debug mode.
 
 ### Integration Method
 
@@ -591,7 +591,7 @@ Please ensure your app has initialized YumiMediationSDK before calling debug mod
   ```
 
 
-- Manually Integrating YumiMediationSDK
+- Manually Integrating YumiMobileSDK
 
   [SDKDownloadPage-iOS](https://github.com/yumimobi/YumiMediationSDKDemo-iOS/blob/master/normalDocuments/iOSDownloadPage.md)
 
