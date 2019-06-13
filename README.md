@@ -10,10 +10,6 @@
 
 [**YumiMobileSDK for iOS(en)**](https://github.com/yumimobi/YumiMobileSDKDemo-iOS/blob/master/normalDocuments/YumiMobileSDK%20for%20iOS(en).md)
 
-[**YumiMobileSDK for Unity(zh-cn)**](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/source/document/YumiMediationSDK%20for%20Unity(zh-cn).md)
-
-[**YumiMobileSDK for Unity(en)**](https://github.com/yumimobi/YumiMediationSDK-Unity/blob/master/source/document/YumiMediationSDK%20for%20Unity(en).md)
-
 [**SDKDownloadPage-iOS**](https://github.com/yumimobi/YumiMobileSDKDemo-iOS/blob/master/normalDocuments/iOSDownloadPage.md)
 
 ## Q&A 
