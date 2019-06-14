@@ -577,11 +577,11 @@
 
 ### TEST ID
 
- 
-| Formats             | Slot(Placement) ID                                                                                                                | Note                                                                                                                              |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Banner                 | l6ibkpae                                                                                                                          | Using this test ID, you are able to get test ads which are from YUMI, AdMob, AppLovin, Baidu, Facebook, GDTMob                                         |
-| Interstitial  | onkkeg5i | Using this test ID, you are able to get test ads which are form YUMI, AdMob, Baidu, Chartboost, GDTMob, IronSource, InMobi, IQzone, Unity Ads, Vungle, ZPLAYAds                                         |
-| Rewarded Video         | 5xmpgti4                                                                                                                          | Using this test ID, you can get test ads which are from YUMI, AdMob, AdColony, AppLovin, IronSource, InMobi, Mintegral, Unity Ads, Vungle, ZPLAYAds                                         |
-| Native                 | atb3ke1i                                                                                                                          | You can get test ads which are from YUMI, AdMob, Baidu, GDTMob, Facebook by using this test ID                                                                              |
-| Splash                 | pwmf5r42                                                                                                                         | For now, Only YUMI platform returns test ads by use this test ID                                                                                                    |
+
+| Formats        | Slot(Placement) ID |
+| -------------- | ------------------ |
+| Banner         | l6ibkpae           |
+| Interstitial   | onkkeg5i           |
+| Rewarded Video | 5xmpgti4           |
+| Native         | atb3ke1i           |
+| Splash         | pwmf5r42           |
