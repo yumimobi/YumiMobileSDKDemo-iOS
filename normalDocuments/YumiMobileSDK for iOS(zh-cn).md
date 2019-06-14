@@ -603,15 +603,15 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
 ## 调试模式
 
 ### TEST ID
- 
 
-| 广告类型               | Slot(Placement) ID                                                                                                                | 备注                                                                                                                               |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Banner                 | l6ibkpae                                                                                                                          | YUMI,AdMob,APPlovin,Baidu,Facebook,GDTMob  使用此test id,以上Network平台可测试到对应平台广告                                                 |
-| Interstitial  | onkkeg5i | YUMI,AdMob,Baidu,Chartboost,GDTMob,IronSource,Inmobi,IQzone, untiy Ads，vungle, ZPLAYAds 使用此test id,以上Network平台可测试到对应平台广告 |
-| Rewarded Video         | 5xmpgti4                                                                                                                          | YUMI,AdMob,Adcolony, APPlovin,IronSource,Inmobi,Mintegral, untiy Ads，vungle, ZPLAYAds 使用此test id,以上Network平台可测试到对应平台广告 |
-| Native                 | atb3ke1i                                                                                                                          | YUMI,AdMob,Baidu,GDTMob,Facebook 使用此test id,以上Network平台可测试到对应平台广告                                        |
-| Splash                 | pwmf5r42                                                                                                                         | 使用此test id,只能测到YUMI平台广告                                                                                                     |
+
+| 广告类型           | Slot(Placement) ID |
+| -------------- | ------------------ |
+| Banner         | l6ibkpae           |
+| Interstitial   | onkkeg5i           |
+| Rewarded Video | 5xmpgti4           |
+| Native         | atb3ke1i           |
+| Splash         | pwmf5r42           |
 
 
 
