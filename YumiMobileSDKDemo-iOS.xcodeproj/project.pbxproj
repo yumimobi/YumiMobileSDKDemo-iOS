@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D075B9F22B37D5A0041F2CC /* native_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D075B9D22B37D5A0041F2CC /* native_close@2x.png */; };
+		6D075BA022B37D5A0041F2CC /* native_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D075B9E22B37D5A0041F2CC /* native_back@2x.png */; };
 		6D691C5022AF5040000D0E0A /* YMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D691C4F22AF5040000D0E0A /* YMAppDelegate.m */; };
 		6D691C5622AF5040000D0E0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D691C5422AF5040000D0E0A /* Main.storyboard */; };
 		6D691C5922AF5040000D0E0A /* YumiMobileSDKDemo_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D691C5722AF5040000D0E0A /* YumiMobileSDKDemo_iOS.xcdatamodeld */; };
@@ -27,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		26646733205B61C7FB7C5D13 /* libPods-YumiMobileSDKDemo-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YumiMobileSDKDemo-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D075B9D22B37D5A0041F2CC /* native_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "native_close@2x.png"; path = "YumiMobileSDKDemo-iOS/Demo/native_close@2x.png"; sourceTree = SOURCE_ROOT; };
+		6D075B9E22B37D5A0041F2CC /* native_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "native_back@2x.png"; path = "YumiMobileSDKDemo-iOS/Demo/native_back@2x.png"; sourceTree = SOURCE_ROOT; };
 		6D691C4B22AF503F000D0E0A /* YumiMobileSDKDemo-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YumiMobileSDKDemo-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D691C4E22AF503F000D0E0A /* YMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YMAppDelegate.h; sourceTree = "<group>"; };
 		6D691C4F22AF5040000D0E0A /* YMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YMAppDelegate.m; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 		6DB514E222AF544F004A5A4F /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				6D075B9E22B37D5A0041F2CC /* native_back@2x.png */,
+				6D075B9D22B37D5A0041F2CC /* native_close@2x.png */,
 				6DB5151922AF5ED1004A5A4F /* Layer+Transition */,
 				6DB514E822AF544F004A5A4F /* Toast */,
 				6DB514ED22AF544F004A5A4F /* YMInitializeModel.h */,
@@ -231,6 +237,8 @@
 				6D691C5B22AF5040000D0E0A /* Assets.xcassets in Resources */,
 				6DB5152A22AF6206004A5A4F /* YMAppViewController.xib in Resources */,
 				6DB5152D22AF6206004A5A4F /* YMNativeView.xib in Resources */,
+				6D075BA022B37D5A0041F2CC /* native_back@2x.png in Resources */,
+				6D075B9F22B37D5A0041F2CC /* native_close@2x.png in Resources */,
 				6D691C5622AF5040000D0E0A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,7 +255,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS-resources.sh",
-				"${PODS_ROOT}/YumiMediationDebugCenter-iOS/Resources/YumiMediationDebugCenter.bundle",
 				"${PODS_ROOT}/YumiMediationSDK/Resources/YumiMediationSDK.bundle",
 				"${PODS_ROOT}/YumiMediationSDK/Resources/YumiAdsSDK.bundle",
 				"${PODS_ROOT}/YumiMediationSDK/Resources/ZplayMuteListener.bundle",
@@ -256,7 +263,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiMediationDebugCenter.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiMediationSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiAdsSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZplayMuteListener.bundle",

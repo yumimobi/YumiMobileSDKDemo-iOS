@@ -33,10 +33,7 @@
             * [原生视频广告](#原生视频广告) 
             * [原生广告选项 YumiMediationNativeAdConfiguration](#原生广告选项-yumimediationnativeadconfiguration)  
             * [实现代理方法](#实现代理方法-4)   
-   * [调试模式](#调试模式)
-      * [接入方式](#接入方式-1)
-      * [调用调试模式](#调用调试模式)   
-      * [图示](#图示)   
+   * [调试模式](#调试模式) 
       * [TEST ID](#TEST-ID)
 
 # YumiMobileSDK iOS
@@ -605,56 +602,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
 
 ## 调试模式
 
-如果您想调试平台key是否有广告返回，可选择调试模式。
-
-调用调试模式之前，请保证您的 app 已经初始化 YumiMobileSDK 。
-
-### 接入方式
-
-- CocoaPods（推荐）
-
-  ```ruby
-  pod "YumiMediationDebugCenter-iOS" 
-  ```
-
-
-- 手动方式
-
-  将下载好的``YumiMediationDebugCenter-iOS.framework``加入``Xcode``工程即可。 
-
-  [**DownloadPage-iOS**](https://github.com/yumimobi/YumiMobileSDKDemo-iOS/blob/master/normalDocuments/iOSDownloadPage.md)
-
-### 调用调试模式
-
-```objective-c
-#import <YumiMediationDebugCenter-iOS/YumiMediationDebugController.h>
-
-[[YumiMediationDebugController sharedInstance] 
-	presentWithBannerPlacementID:@"Your BannerPlacementID"
-	     interstitialPlacementID:@"Your interstitialPlacementID"
-	            videoPlacementID:@"Your videoPlacementID"
-	           nativePlacementID:@"Your nativePlacementID"
-	                   channelID:@"Your channelID"
-	                   versionID:@"Your versionID"
-	          rootViewController:self];//your rootVC
-```
-
-### 图示
-
-<img src="resources/debug-1.png" width="240" height="426">
-
-选择平台类型
-
-<img src="resources/debug-2.png" width="240" height="426">
-
-选择单一平台，灰色平台为已添加未配置
-
-<img src="resources/debug-3.png" width="240" height="426">
-
-选择广告类型，调试单一平台
-
 ### TEST ID
-
  
 
 | 广告类型               | Slot(Placement) ID                                                                                                                | 备注                                                                                                                               |

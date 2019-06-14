@@ -4,7 +4,6 @@
 | :-----------------------------: | :-----: | :------------: | :--------------------------------------: | :--: |
 |        YumiMediationSDK         |  3.6.4  |   B+I+V+N+S    | [link](http://adsdk.yumimobi.com/iOS/Archived/3.6.4.0/YumiMediationSDK-iOS.tar.bz2) |      |
 | YumiMediationSDKConfig.xcconfig |  3.6.4  |                | [link](https://adsdk.yumimobi.com/iOS/Archived/YumiMediationSDKConfig.xcconfig) |      |
-|    YumiMediationDebugCenter     |  3.6.4  |                | [link](http://adsdk.yumimobi.com/iOS/Archived/3.6.4.0/YumiMediationDebugCenter-iOS.tar.bz2) |      |
 |                                 |         |                |                                          |      |
 
 | shortName |   FullName   |

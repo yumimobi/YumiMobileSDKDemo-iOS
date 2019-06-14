@@ -6,6 +6,5 @@ target 'YumiMobileSDKDemo-iOS' do
   # use_frameworks!
 
     pod "YumiMediationSDK"
-    pod "YumiMediationDebugCenter-iOS"
 
 end

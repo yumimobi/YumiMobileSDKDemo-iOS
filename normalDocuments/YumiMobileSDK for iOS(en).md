@@ -33,9 +33,6 @@
             * [YumiMediationNativeAdConfiguration](#yumimediationnativeadconfiguration)   
             * [Delegate implementation](#delegate-implementation-4)   
    * [Debug Mode](#debug-mode)   
-      * [Integration Method](#integration-method-1)   
-      * [Call debug mode](#call-debug-mode)   
-      * [Sample](#sample)  
       * [TEST ID](#TEST-ID)
 
 # YumiMobileSDK iOS
@@ -577,54 +574,6 @@
   ```
 
 ## Debug Mode
-
-Please select debug mode if you want to test whether ad ruturn is available for an app.
-
-Please ensure your app has initialized YumiMobileSDK before calling debug mode.
-
-### Integration Method
-
-- CocoaPods ( recommend )
-
-  ```ruby
-  pod "YumiMediationDebugCenter-iOS" 
-  ```
-
-
-- Manually Integrating YumiMobileSDK
-
-  [SDKDownloadPage-iOS](https://github.com/yumimobi/YumiMediationSDKDemo-iOS/blob/master/normalDocuments/iOSDownloadPage.md)
-
-  Unzip the downloaded file to get our ``YumiMediationDebugCenter-iOS.framework``. Select this framework and add them to your project. Make sure to have 'Copy Items' checked.
-
-### Call debug mode
-
-```objective-c
-#import <YumiMediationDebugCenter-iOS/YumiMediationDebugController.h>
-
-[[YumiMediationDebugController sharedInstance] 
-	presentWithBannerPlacementID:@"Your BannerPlacementID"
-	     interstitialPlacementID:@"Your interstitialPlacementID"
-	            videoPlacementID:@"Your videoPlacementID"
-	           nativePlacementID:@"Your nativePlacementID"
-	                   channelID:@"Your channelID"
-	                   versionID:@"Your versionID"
-	          rootViewController:self];//your rootVC
-```
-
-### Sample
-
-<img src="resources/debug-1.png" width="240" height="426">
-
-Select platform integration category
-
-<img src="resources/debug-2.png" width="240" height="426">
-
-Select single platform, the grey indicates  not configurated yet.
-
-<img src="resources/debug-3.png" width="240" height="426">
-
-select ad category, debug single platform
 
 ### TEST ID
 
