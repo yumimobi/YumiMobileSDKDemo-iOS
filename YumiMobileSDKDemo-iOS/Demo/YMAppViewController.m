@@ -817,7 +817,7 @@ static int nativeAdNumber = 4;
         
         [weakSelf showLogConsoleWith:@"show new native Ad" adLogType:YumiMediationAdLogTypeNative];
         
-        weakSelf.nativeView = [[NSBundle mainBundle] loadNibNamed:@"YumiNativeView" owner:nil options:nil].firstObject;
+        weakSelf.nativeView = [[NSBundle mainBundle] loadNibNamed:@"YMNativeView" owner:nil options:nil].firstObject;
         weakSelf.nativeView.frame = weakSelf.view.frame;
         [weakSelf.nativeView.closeButton addTarget:weakSelf
                                             action:@selector(closeNativeView)
