@@ -255,7 +255,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS-resources.sh",
-				"${PODS_ROOT}/YumiMediationDebugCenter-iOS/Resources/YumiMediationDebugCenter.bundle",
 				"${PODS_ROOT}/YumiMediationSDK/Resources/YumiMediationSDK.bundle",
 				"${PODS_ROOT}/YumiMediationSDK/Resources/YumiAdsSDK.bundle",
 				"${PODS_ROOT}/YumiMediationSDK/Resources/ZplayMuteListener.bundle",
@@ -264,7 +263,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiMediationDebugCenter.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiMediationSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiAdsSDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZplayMuteListener.bundle",

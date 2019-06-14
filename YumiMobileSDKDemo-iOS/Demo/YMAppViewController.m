@@ -10,9 +10,6 @@
 #import "CALayer+Transition.h"
 #import "YMNativeView.h"
 #import "YMViewController.h"
-#import <YumiMediationDebugCenter-iOS/YumiMediationDebugController.h>
-#import <YumiMediationDebugCenter-iOS/YumiMediationDemoConstants.h>
-#import <YumiMediationDebugCenter-iOS/YumiMediationFetchAdConfig.h>
 #import <YumiMediationSDK/YumiAdsSplash.h>
 #import <YumiMediationSDK/YumiMediationAdapterRegistry.h>
 #import <YumiMediationSDK/YumiMediationBannerView.h>
@@ -24,6 +21,13 @@
 
 static NSString *const appKey = @"";
 static int nativeAdNumber = 4;
+typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
+    YumiMediationAdLogTypeBanner,
+    YumiMediationAdLogTypeInterstitial,
+    YumiMediationAdLogTypeVideo,
+    YumiMediationAdLogTypeSplash,
+    YumiMediationAdLogTypeNative,
+};
 
 @interface YMAppViewController () <YumiMediationBannerViewDelegate, YumiMediationInterstitialDelegate,
                                               YumiMediationVideoDelegate, YumiAdsSplashDelegate,
@@ -199,55 +203,6 @@ static int nativeAdNumber = 4;
     return vc;
 }
 
-- (void)requestAdConfig {
-    __weak typeof(self) weakSelf = self;
-    void (^retry)(void) = ^{
-
-        dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC));
-        dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
-        dispatch_after(t, q, ^{
-            [weakSelf requestAdConfig];
-
-        });
-    };
-
-    [self fetchAdConfigWith:YumiMediationAdTypeBanner];
-    [self fetchAdConfigWith:YumiMediationAdTypeInterstitial];
-    [self fetchAdConfigWith:YumiMediationAdTypeVideo];
-    [self fetchAdConfigWith:YumiMediationAdTypeNative];
-
-    if (!self.isConfigSuccess) {
-        retry();
-        return;
-    }
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.yumiMediationButton.enabled = YES;
-        [self.yumiMediationButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    });
-}
-
-- (void)fetchAdConfigWith:(YumiMediationAdType)adType {
-    NSString *placementID = [self getAdPlacementIDWith:adType];
-    if (placementID.length == 0) {
-        return;
-    }
-    __weak typeof(self) weakSelf = self;
-    YumiMediationFetchAdConfig *adConfig = [YumiMediationFetchAdConfig sharedFetchAdConfig];
-    [adConfig getAdConfigWith:adType
-                  placementID:placementID
-                    channelID:self.channelID
-                    versionID:self.channelID
-                      success:^(YumiMediationConfiguration *_Nonnull config) {
-                          if (config.providers) {
-                              weakSelf.isConfigSuccess = YES;
-                          }
-                      }
-                      failure:^(NSError *_Nonnull error){
-
-                      }];
-}
-
 - (void)showLogConsoleWith:(NSString *)log adLogType:(YumiMediationAdLogType)adLogType {
 
     NSDate *date = [NSDate date];
@@ -298,15 +253,11 @@ static int nativeAdNumber = 4;
     [alert addAction:[UIAlertAction actionWithTitle:@"NO"
                                               style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction *_Nonnull action) {
-                                                //                                                [self
-                                                //                                                requestAdConfig];
                                             }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"YES"
                                               style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction *_Nonnull action) {
                                                 [YumiTest enableTestMode];
-                                                //                                                [self
-                                                //                                                requestAdConfig];
                                             }]];
 
     [self presentViewController:alert animated:YES completion:nil];
@@ -375,15 +326,6 @@ static int nativeAdNumber = 4;
     if (self.yumiSplash) {
         self.yumiSplash = nil;
     }
-    // @"1l4aphvz"
-    [[YumiMediationDebugController sharedInstance] presentWithBannerPlacementID:self.bannerPlacementID
-                                                        interstitialPlacementID:self.interstitialPlacementID
-                                                               videoPlacementID:self.videoPlacementID
-                                                              nativePlacementID:self.nativePlacementID
-                                                                      channelID:self.channelID
-                                                                      versionID:self.versionID
-                                                             rootViewController:self];
-    [[YumiMediationDebugController sharedInstance] setupBannerSize:self.bannerSize];
 }
 - (IBAction)clickRequestAd:(UIButton *)sender {
 
