@@ -62,14 +62,18 @@
   ```xml
   <key>NSAppTransportSecurity</key>
   <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+    <key>NSAllowsArbitraryLoadsForMedia</key>
+    <true/>
+    <key>NSAllowsArbitraryLoadsInWebContent</key>
+    <true/>
   </dict>
   ```
 
   ![ats_exceptions](resources/ats_exceptions.png)
 
-  *The `NSAllowsArbitraryLoads` exception is required to make sure your ads are not impacted by ATS on iOS 9 devices, while `NSAllowsArbitraryLoadsForMedia` and `NSAllowsArbitraryLoadsInWebContent` are required to make sure your ads are not impacted by ATS on iOS 10 devices.*
+  *The NSAllowsArbitraryLoads exception is required to make sure your ads are not impacted by ATS on iOS 9 devices, while NSAllowsArbitraryLoadsForMedia and NSAllowsArbitraryLoadsInWebContent are required to make sure your ads are not impacted by ATS on iOS 10 and later devices.*
 
 ## Integration Method
 
