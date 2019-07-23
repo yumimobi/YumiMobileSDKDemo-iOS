@@ -18,6 +18,7 @@
 #import <YumiMediationSDK/YumiMediationVideo.h>
 #import <YumiMediationSDK/YumiTest.h>
 #import <YumiMediationSDK/YumiMediationNativeAdConfiguration.h>
+#import <YumiMediationSDK/YumiMediationSplash.h>
 
 static NSString *const appKey = @"";
 static int nativeAdNumber = 4;
@@ -30,7 +31,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 };
 
 @interface YMAppViewController () <YumiMediationBannerViewDelegate, YumiMediationInterstitialDelegate,
-                                              YumiMediationVideoDelegate, YumiAdsSplashDelegate,
+                                              YumiMediationVideoDelegate, YumiMediationSplashAdDelegate,
                                               YumiMediationNativeAdDelegate, YMViewControllerDelegate,YumiMediationNativeVideoControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *yumiMediationButton;
@@ -47,7 +48,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 
 @property (nonatomic) YumiMediationBannerView *bannerView;
 @property (nonatomic) YumiMediationInterstitial *interstitial;
-@property (nonatomic) YumiAdsSplash *yumiSplash;
+@property (nonatomic) YumiMediationSplash *yumiSplash;
 @property (nonatomic) YumiMediationVideo *videoAdInstance;
 @property (nonatomic) YumiMediationNativeAd *nativeAd;
 @property (nonatomic) YMNativeView *nativeView;
@@ -91,9 +92,9 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
                           versionID:(NSString *)versionID
                              adType:(YumiAdType)adType {
     self = [super init];
-
+    
     self = [self createVCFromCustomBundle];
-
+    
     self.channelID = channelID;
     self.versionID = versionID;
     self.adType = (YumiMediationAdLogType)adType;
@@ -118,7 +119,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
         case YumiAdNative:
             self.nativePlacementID = placementID;
             break;
-
+            
         default:
             break;
     }
@@ -142,17 +143,17 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
         case YumiMediationAdTypeNative:
             placementID = self.nativePlacementID;
             break;
-
+            
         default:
             break;
     }
-
+    
     return placementID;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // initialize global log
     self.bannerAdLog = @"";
     self.interstitialAdLog = @"";
@@ -160,11 +161,11 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
     self.splashAdLog = @"";
     self.nativeAdLog = @"";
     NSArray<UIButton *> *senders =
-        @[ self.yumiMediationButton, self.requestAdButton, self.presentOrCloseAdButton, self.checkVideoButton ];
+    @[ self.yumiMediationButton, self.requestAdButton, self.presentOrCloseAdButton, self.checkVideoButton ];
     [self setUIWithButtons:senders];
     self.showLogConsole.editable = NO;
     [self addObserver:self forKeyPath:@"isConfigSuccess" options:NSKeyValueObservingOptionNew context:nil];
-
+    
     self.selectAdType.selectedSegmentIndex = (NSInteger)self.adType;
     [self clickSegmentControl:self.selectAdType];
 }
@@ -175,7 +176,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
         self.isOnce = YES;
         [self implementTestFeature];
     }
-
+    
     YumiMediationAdapterRegistry *yumiRegistry = [YumiMediationAdapterRegistry registry];
     yumiRegistry.providerWhiteList = nil;
 }
@@ -195,7 +196,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 - (YMAppViewController *)createVCFromCustomBundle {
     NSBundle *bundle = [NSBundle mainBundle];
     YMAppViewController *vc =
-        [[YMAppViewController alloc] initWithNibName:@"YMAppViewController" bundle:bundle];
+    [[YMAppViewController alloc] initWithNibName:@"YMAppViewController" bundle:bundle];
     if (vc == nil) {
         NSLog(@"Failed to load material");
         return self;
@@ -204,12 +205,12 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 }
 
 - (void)showLogConsoleWith:(NSString *)log adLogType:(YumiMediationAdLogType)adLogType {
-
+    
     NSDate *date = [NSDate date];
     NSDateFormatter *formateDate = [[NSDateFormatter alloc] init];
     [formateDate setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *dataString = [formateDate stringFromDate:date];
-
+    
     NSString *formateLog = [NSString stringWithFormat:@"%@ : %@ \n", dataString, log];
     NSString *adLog = @"";
     switch (adLogType) {
@@ -233,11 +234,11 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
             self.nativeAdLog = [self.nativeAdLog stringByAppendingString:formateLog];
             adLog = self.nativeAdLog;
             break;
-
+            
         default:
             break;
     }
-
+    
     if (self.adType != adLogType) {
         return;
     }
@@ -259,7 +260,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
                                             handler:^(UIAlertAction *_Nonnull action) {
                                                 [YumiTest enableTestMode];
                                             }]];
-
+    
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -280,11 +281,11 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
         case YumiMediationAdLogTypeNative:
             self.nativeAdLog = @"";
             break;
-
+            
         default:
             break;
     }
-
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.showLogConsole.text = @"";
     });
@@ -294,7 +295,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
     if (isLog && _bannerView) {
         [self showLogConsoleWith:@"remove  banner ad" adLogType:YumiMediationAdLogTypeBanner];
     }
-
+    
     if (_bannerView) {
         [self.bannerView disableAutoRefresh];
         [self.bannerView removeFromSuperview];
@@ -306,7 +307,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
     if (isLog && _nativeAd) {
         [self showLogConsoleWith:@"remove native ad " adLogType:YumiMediationAdLogTypeNative];
     }
-
+    
     if (self.nativeAd) {
         self.nativeAd = nil;
     }
@@ -318,20 +319,21 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
     if (self.interstitial) {
         self.interstitial = nil;
     }
-
+    
     if (self.videoAdInstance) {
         self.videoAdInstance = nil;
     }
-
+    
     if (self.yumiSplash) {
         self.yumiSplash = nil;
     }
+    
 }
 - (IBAction)clickRequestAd:(UIButton *)sender {
-
+    
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-
+        
         switch (weakSelf.selectAdType.selectedSegmentIndex) {
             case 0: {
                 weakSelf.bannerView.bannerSize = self.bannerSize;
@@ -341,7 +343,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
                 [weakSelf.bannerView loadAd:weakSelf.switchIsSmartSize.on];
                 weakSelf.bannerView.delegate = weakSelf;
                 [weakSelf showLogConsoleWith:[NSString stringWithFormat:@"initialize   banner ad placementID : %@",
-                                                                        weakSelf.bannerPlacementID]
+                                              weakSelf.bannerPlacementID]
                                    adLogType:YumiMediationAdLogTypeBanner];
                 [weakSelf showLogConsoleWith:@"start request banner ad" adLogType:YumiMediationAdLogTypeBanner];
                 [weakSelf.view addSubview:weakSelf.bannerView];
@@ -350,42 +352,50 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
             } break;
             case 1:
                 [weakSelf showLogConsoleWith:[NSString stringWithFormat:@"initialize  interstitial ad placementID : %@",
-                                                                        weakSelf.interstitialPlacementID]
+                                              weakSelf.interstitialPlacementID]
                                    adLogType:YumiMediationAdLogTypeInterstitial];
                 weakSelf.interstitial =
-                    [[YumiMediationInterstitial alloc] initWithPlacementID:weakSelf.interstitialPlacementID
-                                                                 channelID:weakSelf.channelID
-                                                                 versionID:weakSelf.versionID
-                                                        rootViewController:weakSelf];
+                [[YumiMediationInterstitial alloc] initWithPlacementID:weakSelf.interstitialPlacementID
+                                                             channelID:weakSelf.channelID
+                                                             versionID:weakSelf.versionID
+                                                    rootViewController:weakSelf];
                 weakSelf.interstitial.delegate = weakSelf;
                 break;
-
+                
             case 2: {
                 [weakSelf showLogConsoleWith:[NSString stringWithFormat:@"initialize  video ad placementID : %@",
-                                                                        weakSelf.videoPlacementID]
+                                              weakSelf.videoPlacementID]
                                    adLogType:YumiMediationAdLogTypeVideo];
                 weakSelf.videoAdInstance = [YumiMediationVideo sharedInstance];
+                // 修改coreLogicInstance 中 state的值
+                [[weakSelf.videoAdInstance valueForKey:@"coreLogicInstance"] setValue:@(0) forKey:@"state"];
                 [weakSelf.videoAdInstance loadAdWithPlacementID:weakSelf.videoPlacementID
                                                       channelID:weakSelf.channelID
                                                       versionID:weakSelf.versionID];
                 weakSelf.videoAdInstance.delegate = weakSelf;
             } break;
-
-            case 3:
-                weakSelf.yumiSplash = [YumiAdsSplash sharedInstance];
-                [weakSelf.yumiSplash showYumiAdsSplashWith:weakSelf.splashPlacementID
-                                                    appKey:appKey
-                                        rootViewController:weakSelf
-                                                  delegate:weakSelf];
-                break;
+                
+            case 3: {
+                [weakSelf showLogConsoleWith:[NSString stringWithFormat:@"initialize  splash ad placementID : %@",
+                                              weakSelf.splashPlacementID]
+                                   adLogType:YumiMediationAdLogTypeSplash];
+                weakSelf.yumiSplash = [[YumiMediationSplash alloc] initWithPlacementID:weakSelf.splashPlacementID
+                                                                             channelID:weakSelf.channelID
+                                                                             versionID:weakSelf.versionID];
+                weakSelf.yumiSplash.delegate = self;
+                [weakSelf.yumiSplash setFetchTime:5];
+                [weakSelf.yumiSplash setInterfaceOrientation:UIInterfaceOrientationPortrait];
+                [weakSelf.yumiSplash setLaunchImage:[UIImage imageNamed:@"native_back"]];
+                [weakSelf.yumiSplash loadAdAndShowInWindow:[UIApplication sharedApplication].keyWindow];
+            } break;
             case 4:
                 [weakSelf.totalNativeAdArray removeAllObjects];
                 [weakSelf showLogConsoleWith:[NSString stringWithFormat:@"initialize  native ad placementID : %@",
-                                                                        weakSelf.nativePlacementID]
+                                              weakSelf.nativePlacementID]
                                    adLogType:YumiMediationAdLogTypeNative];
                 [weakSelf.nativeAd loadAd:nativeAdNumber];
                 break;
-
+                
             default:
                 break;
         }
@@ -405,7 +415,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
             if ([self.videoAdInstance isReady]) {
                 [self.videoAdInstance presentFromRootViewController:self];
             }
-
+            
             break;
         case 4: {
             if (self.totalNativeAdArray.count > 0) {
@@ -413,17 +423,17 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
                 // remove first object
                 [self.totalNativeAdArray removeObjectAtIndex:0];
                 
-            }else{
+            } else {
                 [self showLogConsoleWith:@"No ad show" adLogType:YumiMediationAdLogTypeNative];
             }
         } break;
-
+            
         default:
             break;
     }
 }
 - (IBAction)clickSegmentControl:(UISegmentedControl *)sender {
-
+    
     // reset button style
     __weak typeof(self) weakSelf = self;
     switch (sender.selectedSegmentIndex) {
@@ -476,7 +486,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
                 weakSelf.yumiSplash = nil;
             });
         } break;
-
+            
         case 3: {
             [self.requestAdButton setTitle:@"Request splash" forState:UIControlStateNormal];
             self.checkVideoButton.hidden = YES;
@@ -501,7 +511,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
             self.smartLabel.hidden = YES;
             self.switchIsSmartSize.hidden = YES;
             self.adType = YumiMediationAdLogTypeNative;
-
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.showLogConsole.text = self.nativeAdLog;
                 [weakSelf removeBannerAd:YES];
@@ -510,7 +520,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
                 weakSelf.yumiSplash = nil;
             });
         } break;
-
+            
         default:
             break;
     }
@@ -541,24 +551,26 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
                                                         handler:^(UIAlertAction *_Nonnull action) {
                                                             [self.videoAdInstance presentFromRootViewController:self];
                                                         }]];
+                [self showLogConsoleWith:@"video is ready to play" adLogType:YumiMediationAdLogTypeVideo];
             } else {
                 [alert addAction:[UIAlertAction actionWithTitle:@"NO video"
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction *_Nonnull action){
-
+                                                            
                                                         }]];
+                [self showLogConsoleWith:@"video isn't ready" adLogType:YumiMediationAdLogTypeVideo];
             }
-
+            
             [self presentViewController:alert animated:YES completion:nil];
         } break;
-
+            
         case 4: {
             __weak typeof(self) weakSelf = self;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf removeNativeAd:YES];
             });
         } break;
-
+            
         default:
             break;
     }
@@ -573,7 +585,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
     rootVc.adType = (YumiAdType)self.adType;
     rootVc.bannerSize = self.bannerSize;
     [self presentViewController:rootVc animated:YES completion:nil];
-
+    
     [[UIApplication sharedApplication].keyWindow.layer transitionWithAnimType:TransitionAnimTypeRamdom
                                                                       subType:TransitionSubtypesFromRamdom
                                                                         curve:TransitionCurveRamdom
@@ -618,7 +630,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 
 - (void)yumiMediationBannerView:(YumiMediationBannerView *)adView didFailWithError:(YumiMediationError *)error {
     [self showLogConsoleWith:[NSString stringWithFormat:@"banner view did fail with error: [ %@ ]",
-                                                        [error localizedDescription]]
+                              [error localizedDescription]]
                    adLogType:YumiMediationAdLogTypeBanner];
 }
 
@@ -627,65 +639,85 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 }
 
 #pragma mark : - YumiMediationInterstitialDelegate
-
 - (void)yumiMediationInterstitialDidReceiveAd:(YumiMediationInterstitial *)interstitial {
     self.isConfigSuccess = YES;
-    [self showLogConsoleWith:@"interstitial did receive ad" adLogType:YumiMediationAdLogTypeInterstitial];
+    [self showLogConsoleWith:@"interstitial did received ad" adLogType:YumiMediationAdLogTypeInterstitial];
 }
-
 - (void)yumiMediationInterstitial:(YumiMediationInterstitial *)interstitial
-                 didFailWithError:(YumiMediationError *)error {
-    [self showLogConsoleWith:[NSString stringWithFormat:@"interstitial did fail with error : [ %@ ] ",
-                                                        [error localizedDescription]]
+           didFailToLoadWithError:(YumiMediationError *)error {
+    [self showLogConsoleWith:[NSString stringWithFormat:@"interstitial did fail to load with error : [ %@ ] ",
+                              [error localizedDescription]]
                    adLogType:YumiMediationAdLogTypeInterstitial];
 }
-
-- (void)yumiMediationInterstitialWillDismissScreen:(YumiMediationInterstitial *)interstitial {
-    [self showLogConsoleWith:@"interstitial will dismiss screen" adLogType:YumiMediationAdLogTypeInterstitial];
+- (void)yumiMediationInterstitialDidClosed:(YumiMediationInterstitial *)interstitial {
+    [self showLogConsoleWith:@"interstitial did closed" adLogType:YumiMediationAdLogTypeInterstitial];
 }
-
 - (void)yumiMediationInterstitialDidClick:(YumiMediationInterstitial *)interstitial {
     [self showLogConsoleWith:@"interstitial did click " adLogType:YumiMediationAdLogTypeInterstitial];
 }
+- (void)yumiMediationInterstitialDidOpen:(YumiMediationInterstitial *)interstitial {
+    [self showLogConsoleWith:@"interstitial did open" adLogType:YumiMediationAdLogTypeInterstitial];
+}
+- (void)yumiMediationInterstitialDidStartPlaying:(YumiMediationInterstitial *)interstitial {
+    [self showLogConsoleWith:@"interstitial did start playing" adLogType:YumiMediationAdLogTypeInterstitial];
+}
+- (void)yumiMediationInterstitial:(YumiMediationInterstitial *)interstitial
+           didFailToShowWithError:(YumiMediationError *)error {
+    [self showLogConsoleWith:[NSString stringWithFormat:@"interstitial did fail to show with error : [ %@ ] ",
+                              [error localizedDescription]]
+                   adLogType:YumiMediationAdLogTypeInterstitial];
+}
 
 #pragma mark - YumiMediationVideoDelegate
-- (void)yumiMediationVideoDidClose:(YumiMediationVideo *)video {
-    [self showLogConsoleWith:@"video did close " adLogType:YumiMediationAdLogTypeVideo];
-}
 
+- (void)yumiMediationVideoDidReceiveAd:(YumiMediationVideo *)video {
+    [self showLogConsoleWith:@"video did received... " adLogType:YumiMediationAdLogTypeVideo];
+}
 - (void)yumiMediationVideoDidReward:(YumiMediationVideo *)video {
-
-    [self showLogConsoleWith:@"video did reward " adLogType:YumiMediationAdLogTypeVideo];
+    [self showLogConsoleWith:@"video did rewarded " adLogType:YumiMediationAdLogTypeVideo];
 }
 
+- (void)yumiMediationVideoDidClosed:(YumiMediationVideo *)video isRewarded:(BOOL)isRewarded {
+    [self showLogConsoleWith:[NSString stringWithFormat:@"video did closed. isRewarded:%d", isRewarded]
+                   adLogType:YumiMediationAdLogTypeVideo];
+}
 - (void)yumiMediationVideoDidOpen:(YumiMediationVideo *)video {
     self.isConfigSuccess = YES;
     [self showLogConsoleWith:@"video did open " adLogType:YumiMediationAdLogTypeVideo];
 }
-
 - (void)yumiMediationVideoDidStartPlaying:(YumiMediationVideo *)video {
     [self showLogConsoleWith:@"video start playing " adLogType:YumiMediationAdLogTypeVideo];
 }
-
-#pragma mark : - YumiAdsSplashDelegate
-
-- (void)yumiAdsSplashDidLoad:(YumiAdsSplash *)splash {
-    [self showLogConsoleWith:@"splash did load " adLogType:YumiMediationAdLogTypeSplash];
+- (void)yumiMediationVideoDidClick:(YumiMediationVideo *)video {
+    [self showLogConsoleWith:@"video did click " adLogType:YumiMediationAdLogTypeVideo];
 }
-- (void)yumiAdsSplash:(YumiAdsSplash *)splash DidFailToLoad:(NSError *)error {
+- (void)yumiMediationVideo:(YumiMediationVideo *)video didFailToLoadWithError:(NSError *)error {
+    [self showLogConsoleWith:[NSString stringWithFormat:@"video did fail to load with error [ %@ ] ",
+                              [error localizedDescription]]
+                   adLogType:YumiMediationAdLogTypeVideo];
+}
+- (void)yumiMediationVideo:(YumiMediationVideo *)video didFailToShowWithError:(NSError *)error {
+    [self showLogConsoleWith:@"video did fail to show" adLogType:YumiMediationAdLogTypeVideo];
+}
+
+#pragma mark : - YumiMediationSplashAdDelegate
+
+- (void)yumiMediationSplashAdSuccessToShow:(YumiMediationSplash *)splash {
+    [self showLogConsoleWith:@"splash success to show  " adLogType:YumiMediationAdLogTypeSplash];
+}
+
+- (void)yumiMediationSplashAdFailToShow:(YumiMediationSplash *)splash withError:(NSError *)error {
     [self showLogConsoleWith:[NSString
-                                 stringWithFormat:@"splash did fail with error [ %@ ] ", [error localizedDescription]]
+                              stringWithFormat:@"splash did fail with error [ %@ ] ", [error localizedDescription]]
                    adLogType:YumiMediationAdLogTypeSplash];
 }
-- (void)yumiAdsSplashDidClicked:(YumiAdsSplash *)splash {
-    [self showLogConsoleWith:@"splash did clicked " adLogType:YumiMediationAdLogTypeSplash];
+
+- (void)yumiMediationSplashAdDidClick:(YumiMediationSplash *)splash {
+    [self showLogConsoleWith:@"splash did click " adLogType:YumiMediationAdLogTypeSplash];
 }
-- (void)yumiAdsSplashDidClosed:(YumiAdsSplash *)splash {
-    [self showLogConsoleWith:@"splash did closed " adLogType:YumiMediationAdLogTypeSplash];
-}
-- (nullable UIImage *)yumiAdsSplashDefaultImage {
-    [self showLogConsoleWith:@"splash set default image is nil" adLogType:YumiMediationAdLogTypeSplash];
-    return nil;
+
+- (void)yumiMediationSplashAdDidClose:(YumiMediationSplash *)splash {
+    [self showLogConsoleWith:@"splash did close " adLogType:YumiMediationAdLogTypeSplash];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -695,7 +727,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
     if (self.isObserved) {
         return;
     }
-
+    
     if ([keyPath isEqualToString:@"isConfigSuccess"]) {
         if ([change[@"new"] intValue] == 1) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -710,13 +742,14 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 #pragma mark - YumiMediationNativeAdDelegate
 /// Tells the delegate that an ad has been successfully loaded.
 - (void)yumiMediationNativeAdDidLoad:(NSArray<YumiMediationNativeModel *> *)nativeAdArray {
-
+    
     self.totalNativeAdArray = [NSMutableArray arrayWithArray:nativeAdArray];
     
     __weak typeof(self) weakSelf = self;
-
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *nativeStr = [NSString stringWithFormat:@"native did load ad count is %ld", nativeAdArray.count];
+        NSString *nativeStr =
+        [NSString stringWithFormat:@"native did load ad count is %lu", (unsigned long)nativeAdArray.count];
         [weakSelf showLogConsoleWith:nativeStr adLogType:YumiMediationAdLogTypeNative];
     });
 }
@@ -724,7 +757,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 /// Tells the delegate that a request failed.
 - (void)yumiMediationNativeAd:(YumiMediationNativeAd *)nativeAd didFailWithError:(YumiMediationError *)error {
     [self showLogConsoleWith:[NSString
-                                 stringWithFormat:@"native did fail with error [ %@ ] ", [error localizedDescription]]
+                              stringWithFormat:@"native did fail with error [ %@ ] ", [error localizedDescription]]
                    adLogType:YumiMediationAdLogTypeNative];
     [self.totalNativeAdArray removeAllObjects];
 }
@@ -733,26 +766,27 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 - (void)yumiMediationNativeAdDidClick:(YumiMediationNativeModel *)nativeAd {
     [self showLogConsoleWith:@"native did clicked " adLogType:YumiMediationAdLogTypeNative];
 }
-#pragma mark: YumiMediationNativeVideoControllerDelegate
+#pragma mark : YumiMediationNativeVideoControllerDelegate
 /// Tells the delegate that the video controller has began or resumed playing a video.
-- (void)yumiMediationNativeVideoControllerDidPlayVideo:(YumiMediationNativeVideoController *)videoController{
+- (void)yumiMediationNativeVideoControllerDidPlayVideo:(YumiMediationNativeVideoController *)videoController {
     [self showLogConsoleWith:@"yumiMediationNativeVideoControllerDidPlayVideo" adLogType:YumiMediationAdLogTypeNative];
 }
 
 /// Tells the delegate that the video controller has paused video.
-- (void)yumiMediationNativeVideoControllerDidPauseVideo:(YumiMediationNativeVideoController *)videoController{
+- (void)yumiMediationNativeVideoControllerDidPauseVideo:(YumiMediationNativeVideoController *)videoController {
     [self showLogConsoleWith:@"yumiMediationNativeVideoControllerDidPauseVideo" adLogType:YumiMediationAdLogTypeNative];
 }
 
 /// Tells the delegate that the video controller's video playback has ended.
-- (void)yumiMediationNativeVideoControllerDidEndVideoPlayback:(YumiMediationNativeVideoController *)videoController{
-    [self showLogConsoleWith:@"yumiMediationNativeVideoControllerDidEndVideoPlayback" adLogType:YumiMediationAdLogTypeNative];
+- (void)yumiMediationNativeVideoControllerDidEndVideoPlayback:(YumiMediationNativeVideoController *)videoController {
+    [self showLogConsoleWith:@"yumiMediationNativeVideoControllerDidEndVideoPlayback"
+                   adLogType:YumiMediationAdLogTypeNative];
 }
 - (void)closeNativeView {
     [self.nativeView removeFromSuperview];
     self.nativeView = nil;
 }
-- (void)showNativeView:(YumiMediationNativeModel *)adData{
+- (void)showNativeView:(YumiMediationNativeModel *)adData {
     __weak typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -769,6 +803,9 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
             NSLog(@"ad had expired");
             return ;
         }
+        
+        adData.videoController.delegate = self;
+        
         weakSelf.nativeView.title.text = adData.title;
         weakSelf.nativeView.desc.text = adData.desc;
         weakSelf.nativeView.callToAction.text = adData.callToAction;
@@ -790,23 +827,23 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
         [weakSelf.nativeAd reportImpression:adData view:weakSelf.nativeView.adView];
     });
 }
-#pragma mark : - YMViewControllerDelegate
+#pragma mark : - YumiViewControllerDelegate
 - (void)modifyPlacementID:(NSString *)placementID
                 channelID:(NSString *)channelID
                 versionID:(NSString *)versionID
                    adType:(YumiAdType)adType
                bannerSize:(YumiMediationAdViewBannerSize)bannerSize {
-
+    
     [self removeBannerAd:YES];
     [self removeNativeAd:YES];
     if (self.interstitial) {
         self.interstitial = nil;
     }
-
+    
     if (self.videoAdInstance) {
         self.videoAdInstance = nil;
     }
-
+    
     if (self.yumiSplash) {
         self.yumiSplash = nil;
     }
@@ -818,4 +855,5 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
     self.selectAdType.selectedSegmentIndex = (NSUInteger)self.adType;
     [self clickSegmentControl:self.selectAdType];
 }
+
 @end
