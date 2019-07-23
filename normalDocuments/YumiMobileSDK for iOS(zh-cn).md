@@ -62,18 +62,14 @@
   ```xml
   <key>NSAppTransportSecurity</key>
   <dict>
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
-    <key>NSAllowsArbitraryLoadsForMedia</key>
-    <true/>
-    <key>NSAllowsArbitraryLoadsInWebContent</key>
-    <true/>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
   </dict>
   ```
 
   ![ats_exceptions](resources/ats_exceptions.png)
 
-  *您需要添加 NSAllowsArbitraryLoads，以确保您的广告在 iOS 9 设备上不受 ATS 影响，同时需要添加 NSAllowsArbitraryLoadsForMedia 和 NSAllowsArbitraryLoadsInWebContent，以确保您的广告在 iOS 10 及更高版本的设备上不受 ATS 影响。*
+  *当 `NSAllowsArbitraryLoads` 和 `NSAllowsArbitraryLoadsInWebContent` 或 `NSAllowsArbitraryLoadsForMedia` 同时存在时，根据系统不同，表现的行为也会不一样。简单说，iOS 9 只看 `NSAllowsArbitraryLoads`，而 iOS 10 会优先看 `InWebContent` 和 `ForMedia` 的部分。在 iOS 10 中，要是后两者存在的话，在相关部分就会忽略掉 `NSAllowsArbitraryLoads`；如果不存在，则遵循 `NSAllowsArbitraryLoads` 的设定。*
 
 ## 接入方式
 
