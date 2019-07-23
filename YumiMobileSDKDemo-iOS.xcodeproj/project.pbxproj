@@ -252,20 +252,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS-resources.sh",
-				"${PODS_ROOT}/YumiMediationSDK/Resources/YumiMediationSDK.bundle",
-				"${PODS_ROOT}/YumiMediationSDK/Resources/YumiAdsSDK.bundle",
-				"${PODS_ROOT}/YumiMediationSDK/Resources/ZplayMuteListener.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiMediationSDK.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YumiAdsSDK.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZplayMuteListener.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-YumiMobileSDKDemo-iOS/Pods-YumiMobileSDKDemo-iOS-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
