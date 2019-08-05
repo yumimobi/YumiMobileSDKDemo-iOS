@@ -1,4 +1,4 @@
-# YumiMobileSDKDemo-iOS v4.1.0
+# YumiMobileSDKDemo-iOS v4.2.0
 ## Document
 
 [**YumiMobileSDK for iOS(zh-cn)**](https://github.com/yumimobi/YumiMobileSDKDemo-iOS/blob/master/normalDocuments/YumiMobileSDK%20for%20iOS(zh-cn).md)
