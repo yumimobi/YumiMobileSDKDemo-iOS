@@ -419,10 +419,17 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
             break;
         case 4: {
             if (self.totalNativeAdArray.count > 0) {
-                [self showNativeView:self.totalNativeAdArray[0]];
+               
+                YumiMediationNativeModel *model = self.totalNativeAdArray[0];
+                
+                [self registerNativeView:model];
+                // native view
+                if (!model.isExpressAdView) {
+                    [self showNativeView:model];
+                }
+                
                 // remove first object
                 [self.totalNativeAdArray removeObjectAtIndex:0];
-                
             } else {
                 [self showLogConsoleWith:@"No ad show" adLogType:YumiMediationAdLogTypeNative];
             }
@@ -607,6 +614,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 - (YumiMediationNativeAd *)nativeAd {
     if (!_nativeAd) {
         YumiMediationNativeAdConfiguration *config = [[YumiMediationNativeAdConfiguration alloc] init];
+        config.expressAdSize = CGSizeMake(300, 300);
 //        config.disableImageLoading = NO;
 //        config.preferredAdChoicesPosition = YumiMediationAdViewPositionTopRightCorner;
 //        config.preferredAdAttributionPosition = YumiMediationAdViewPositionTopLeftCorner;
@@ -766,6 +774,22 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
 - (void)yumiMediationNativeAdDidClick:(YumiMediationNativeModel *)nativeAd {
     [self showLogConsoleWith:@"native did clicked " adLogType:YumiMediationAdLogTypeNative];
 }
+- (void)yumiMediationNativeExpressAdRenderSuccess:(YumiMediationNativeModel *)nativeModel {
+    [self showLogConsoleWith:@"native express render success " adLogType:YumiMediationAdLogTypeNative];
+    
+    [self showNativeExpressAdView:nativeModel];
+    
+}
+
+- (void)yumiMediationNativeExpressAd:(YumiMediationNativeModel *)nativeModel didRenderFail:(NSString *)errorMsg {
+    [self showLogConsoleWith:[NSString stringWithFormat:@"native express render fail. error is == %@",errorMsg] adLogType:YumiMediationAdLogTypeNative];
+}
+
+- (void)yumiMediationNativeExpressAdDidClickCloseButton:(YumiMediationNativeModel *)nativeModel {
+    [self showLogConsoleWith:@"native express did click close button " adLogType:YumiMediationAdLogTypeNative];
+    
+    [self closeNativeView];
+}
 #pragma mark : YumiMediationNativeVideoControllerDelegate
 /// Tells the delegate that the video controller has began or resumed playing a video.
 - (void)yumiMediationNativeVideoControllerDidPlayVideo:(YumiMediationNativeVideoController *)videoController {
@@ -786,12 +810,54 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
     [self.nativeView removeFromSuperview];
     self.nativeView = nil;
 }
-- (void)showNativeView:(YumiMediationNativeModel *)adData {
+//- (void)showNativeView:(YumiMediationNativeModel *)adData {
+//    __weak typeof(self) weakSelf = self;
+//
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//
+//        [weakSelf showLogConsoleWith:@"show new native Ad" adLogType:YumiMediationAdLogTypeNative];
+//
+//        weakSelf.nativeView = [[NSBundle mainBundle] loadNibNamed:@"YMNativeView" owner:nil options:nil].firstObject;
+//        weakSelf.nativeView.frame = weakSelf.view.frame;
+//        [weakSelf.nativeView.closeButton addTarget:weakSelf
+//                                            action:@selector(closeNativeView)
+//                                  forControlEvents:UIControlEventTouchDown];
+//
+//        if ([adData isExpired]) {
+//            NSLog(@"ad had expired");
+//            return ;
+//        }
+//
+//        adData.videoController.delegate = self;
+//
+//        weakSelf.nativeView.title.text = adData.title;
+//        weakSelf.nativeView.desc.text = adData.desc;
+//        weakSelf.nativeView.callToAction.text = adData.callToAction;
+//        weakSelf.nativeView.coverImage.image = adData.coverImage.image;
+//        weakSelf.nativeView.icon.image = adData.icon.image;
+//
+//        [weakSelf.view addSubview:weakSelf.nativeView];
+//        [weakSelf.nativeAd registerViewForInteraction:weakSelf.nativeView.adView
+//                                  clickableAssetViews:@{
+//                                                        YumiMediationUnifiedNativeTitleAsset : weakSelf.nativeView.title,
+//                                                        YumiMediationUnifiedNativeDescAsset : weakSelf.nativeView.desc,
+//                                                        YumiMediationUnifiedNativeCoverImageAsset : weakSelf.nativeView.coverImage,
+//                                                        YumiMediationUnifiedNativeMediaViewAsset : weakSelf.nativeView.coverImage,
+//                                                        YumiMediationUnifiedNativeIconAsset : weakSelf.nativeView.icon,
+//                                                        YumiMediationUnifiedNativeCallToActionAsset : weakSelf.nativeView.callToAction
+//                                                        }
+//                                   withViewController:weakSelf
+//                                             nativeAd:adData];
+//        [weakSelf.nativeAd reportImpression:adData view:weakSelf.nativeView.adView];
+//    });
+//}
+
+- (void)registerNativeView:(YumiMediationNativeModel *)adData {
     __weak typeof(self) weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [weakSelf showLogConsoleWith:@"show new native Ad" adLogType:YumiMediationAdLogTypeNative];
+        [weakSelf showLogConsoleWith:@"register new native Ad" adLogType:YumiMediationAdLogTypeNative];
         
         weakSelf.nativeView = [[NSBundle mainBundle] loadNibNamed:@"YMNativeView" owner:nil options:nil].firstObject;
         weakSelf.nativeView.frame = weakSelf.view.frame;
@@ -800,19 +866,11 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
                                   forControlEvents:UIControlEventTouchDown];
         
         if ([adData isExpired]) {
-            NSLog(@"ad had expired");
-            return ;
+            [weakSelf showLogConsoleWith:@"native Ad had expired " adLogType:YumiMediationAdLogTypeNative];
+            return;
         }
         
         adData.videoController.delegate = self;
-        
-        weakSelf.nativeView.title.text = adData.title;
-        weakSelf.nativeView.desc.text = adData.desc;
-        weakSelf.nativeView.callToAction.text = adData.callToAction;
-        weakSelf.nativeView.coverImage.image = adData.coverImage.image;
-        weakSelf.nativeView.icon.image = adData.icon.image;
-        
-        [weakSelf.view addSubview:weakSelf.nativeView];
         [weakSelf.nativeAd registerViewForInteraction:weakSelf.nativeView.adView
                                   clickableAssetViews:@{
                                                         YumiMediationUnifiedNativeTitleAsset : weakSelf.nativeView.title,
@@ -824,9 +882,43 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdLogType) {
                                                         }
                                    withViewController:weakSelf
                                              nativeAd:adData];
+    });
+}
+
+- (void)showNativeView:(YumiMediationNativeModel *)adData {
+    
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [weakSelf showLogConsoleWith:@"show new native Ad" adLogType:YumiMediationAdLogTypeNative];
+        [weakSelf.view addSubview:weakSelf.nativeView];
+        
+        weakSelf.nativeView.title.text = adData.title;
+        weakSelf.nativeView.desc.text = adData.desc;
+        weakSelf.nativeView.callToAction.text = adData.callToAction;
+        weakSelf.nativeView.coverImage.image = adData.coverImage.image;
+        weakSelf.nativeView.icon.image = adData.icon.image;
+        
         [weakSelf.nativeAd reportImpression:adData view:weakSelf.nativeView.adView];
     });
 }
+
+- (void)showNativeExpressAdView:(YumiMediationNativeModel *)adData{
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf showLogConsoleWith:@"show native  express Ad" adLogType:YumiMediationAdLogTypeNative];
+        [weakSelf.view addSubview:weakSelf.nativeView];
+        [weakSelf.nativeView.adView addSubview:adData.expressAdView];
+        
+        CGSize adSize = adData.expressAdView.bounds.size;
+        adData.expressAdView.frame = CGRectMake((weakSelf.nativeView.adView.bounds.size.width - adSize.width) * 0.5, (weakSelf.nativeView.adView.bounds.size.height - adSize.height) *0.5, adSize.width, adSize.height);
+        
+        [weakSelf.nativeAd reportImpression:adData view:weakSelf.nativeView.adView];
+        
+    });
+    
+}
+
 #pragma mark : - YumiViewControllerDelegate
 - (void)modifyPlacementID:(NSString *)placementID
                 channelID:(NSString *)channelID
