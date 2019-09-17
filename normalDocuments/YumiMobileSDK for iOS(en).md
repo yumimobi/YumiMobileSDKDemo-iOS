@@ -1,7 +1,7 @@
 * [YumiMobileSDK iOS](#yumimobilesdk-ios)  
    * [Summary](#summary)       
    * [Develop Encironment Configuration](#develop-encironment-configuration)   
-      * [App Transport Security](#app-transport-security)    
+      * [App Transport Security](#app-transport-security)      
    * [Integration Method](#integration-method)   
    * [Code Sample](#code-sample)   
       * [Advertisement Forms](#advertisement-forms)   
@@ -20,7 +20,10 @@
             * [Show rewarded video](#show-rewarded-video)   
             * [Delegate implementation](#delegate-implementation-2)   
          * [Splash](#splash)   
-            * [Initialization and splash request](#initialization-and-splash-request)   
+            * [Initialization and splash request](#initialization-and-splash-request) 
+            * [set splash fetch time](#set-splash-fetch-time)   
+            * [set launch image](#set-launch-image)   
+            * [set splash orientation (only support Admob)](#set-splash-orientation-(only-support-Admob))   
             * [show splash full screen](#show-splash-full-screen)   
             * [show splash with bottom custom view](#show-splash-with-bottom-custom-view)   
             * [Delegate implementation](#delegate-implementation-3)   
@@ -33,8 +36,9 @@
             * [Native express ads](#Native-express-ads)
             * [YumiMediationNativeAdConfiguration](#yumimediationnativeadconfiguration)   
             * [Delegate implementation](#delegate-implementation-4)   
-   * [Debug Mode](#debug-mode)   
-      * [TEST ID](#TEST-ID)
+    * [TEST ID](#TEST-ID)
+    * [GDPR](#gdpr)
+         * [Set GDPR](#set-gdpr)
 
 # YumiMobileSDK iOS
 
@@ -71,6 +75,9 @@
   ![ats_exceptions](resources/ats_exceptions.png)
 
   *The `NSAllowsArbitraryLoads` exception is required to make sure your ads are not impacted by ATS on iOS 9 devices, while `NSAllowsArbitraryLoadsForMedia` and `NSAllowsArbitraryLoadsInWebContent` are required to make sure your ads are not impacted by ATS on iOS 10 devices.*
+
+- ### [Thirdparty Network Configuration](./ThirdpartyNetworkConfiguration/ThirdpartyNetworkConfiguration.md)
+  Please setting configurations according to the thirdparty network you choose.
 
 ## Integration Method
 
@@ -248,8 +255,7 @@
    	self.yumiInterstitial =  [[YumiMediationInterstitial alloc] 
                                 initWithPlacementID:@"Your PlacementID"
   							                          channelID:@"Your channelID"
-  							                          versionID:@"Your versionID"
-  							                 rootViewController:self];
+  							                          versionID:@"Your versionID"];
     self.yumiInterstitial.delegate = self;
   }
   @end
@@ -261,7 +267,7 @@
   //present YumiMediationInterstitial
   - (IBAction)presentYumiMediationInterstitial:(id)sender {
   	if ([self.yumiInterstitial isReady]) {
-      	[self.yumiInterstitial present];
+      	[self.yumiInterstitial presentFromRootViewController:self];
     } else {
       	NSLog(@"Ad wasn't ready");
     }
@@ -272,18 +278,35 @@
 
   ```objective-c
   //implementing YumiMediationInterstitial Delegate
-  - (void)yumiMediationInterstitialDidReceiveAd:(YumiMediationInterstitial *)interstitial{
-      NSLog(@"interstitialDidReceiveAd");
+  /// Tells the delegate that the interstitial ad request succeeded.
+  - (void)yumiMediationInterstitialDidReceiveAd:(YumiMediationInterstitial *)interstitial {
+    NSLog(@"YumiMediationInterstitialDidReceiveAd");
   }
+  /// Tells the delegate that the interstitial ad failed to load.
   - (void)yumiMediationInterstitial:(YumiMediationInterstitial *)interstitial
-                   didFailWithError:(YumiMediationError *)error{
-      NSLog(@"interstitial:didFailToReceiveAdWithError: %@", error)
+             didFailToLoadWithError:(YumiMediationError *)error {
+    NSLog(@"YumiMediationInterstitialDidFailToLoadWithError: %@", [error localizedDescription]);
   }
-  - (void)yumiMediationInterstitialWillDismissScreen:(YumiMediationInterstitial *)interstitial{
-      NSLog(@"interstitialWillDismissScreen");
+  /// Tells the delegate that the interstitial ad failed to show.
+  - (void)yumiMediationInterstitial:(YumiMediationInterstitial *)interstitial
+             didFailToShowWithError:(YumiMediationError *)error {
+    NSLog(@"YumiMediationInterstitialDidFailToShowWithError: %@", [error localizedDescription]);
   }
-  - (void)yumiMediationInterstitialDidClick:(YumiMediationInterstitial *)interstitial{
-      NSLog(@"interstitialDidClick");
+  /// Tells the delegate that the interstitial ad opened.
+  - (void)yumiMediationInterstitialDidOpen:(YumiMediationInterstitial *)interstitial {
+    NSLog(@"YumiMediationInterstitialDidOpen");
+  }
+  /// Tells the delegate that the interstitial ad start playing.
+  - (void)yumiMediationInterstitialDidStartPlaying:(YumiMediationInterstitial *)interstitial {
+    NSLog(@"YumiMediationInterstitialDidStartPlaying");
+  }
+  /// Tells the delegate that the interstitial is to be animated off the screen.
+  - (void)yumiMediationInterstitialDidClosed:(YumiMediationInterstitial *)interstitial {
+    NSLog(@"YumiMediationInterstitialDidClosed");
+  }
+  /// Tells the delegate that the interstitial ad has been clicked.
+  - (void)yumiMediationInterstitialDidClick:(YumiMediationInterstitial *)interstitial {
+    NSLog(@"YumiMediationInterstitialDidClick");
   }
   ```
 
@@ -321,17 +344,38 @@
 - ##### Delegate implementation
 
   ```objective-c
-  - (void)yumiMediationVideoDidOpen:(YumiMediationVideo *)video{
-      NSLog(@"Opened reward video ad.");
+  /// Tells the delegate that the video ad was received.
+  - (void)yumiMediationVideoDidReceiveAd:(YumiMediationVideo *)video {
+      NSLog(@"YumiMediationVideoDidReceiveAd");
   }
-  - (void)yumiMediationVideoDidStartPlaying:(YumiMediationVideo *)video{
-      NSLog(@"Reward video ad started playing.");
+  /// Tells the delegate that the video ad failed to load.
+  - (void)yumiMediationVideo:(YumiMediationVideo *)video didFailToLoadWithError:(NSError *)error {
+      NSLog(@"YumiMediationVideoDidFailToLoadWithError:%@",[error localizedDescription]);
   }
-  - (void)yumiMediationVideoDidClose:(YumiMediationVideo *)video{
-      NSLog(@"Reward video ad is closed.");
+  /// Tells the delegate that the video ad failed to show.
+  - (void)yumiMediationVideo:(YumiMediationVideo *)video didFailToShowWithError:(NSError *)error {
+      NSLog(@"YumiMediationVideoDidFailToShowWithError:%@",[error localizedDescription]);
   }
-  - (void)yumiMediationVideoDidReward:(YumiMediationVideo *)video{
-      NSLog(@"is Reward");
+  /// Tells the delegate that the video ad opened.
+  - (void)yumiMediationVideoDidOpen:(YumiMediationVideo *)video {
+      NSLog(@"YumiMediationVideoDidOpen");
+  }
+  /// Tells the delegate that the video ad start playing.
+  - (void)yumiMediationVideoDidStartPlaying:(YumiMediationVideo *)video {
+      NSLog(@"YumiMediationVideoDidStartPlaying");
+  }
+  /// Tells the delegate that the video ad closed.
+  /// You can learn about the reward info by examining the ‘isRewarded’ value.
+  - (void)yumiMediationVideoDidClosed:(YumiMediationVideo *)video isRewarded:(BOOL)isRewarded {
+      NSLog(@"YumiMediationVideoDidClosedWithReward:%d",isRewarded);
+  }
+  /// Tells the delegate that the video ad has rewarded the user.
+  - (void)yumiMediationVideoDidReward:(YumiMediationVideo *)video {
+      NSLog(@"YumiMediationVideoDidReward");
+  }
+  /// Tells the delegate that the reward video ad has been clicked by the person.
+  - (void)yumiMediationVideoDidClick:(YumiMediationVideo *)video {
+      NSLog(@"YumiMediationVideoDidClick");
   }
   ```
 
@@ -344,54 +388,82 @@
   for example：in your `AppDelegate.m`  `application:didFinishLaunchingWithOptions:` 
 
   ```objective-c
-  #import <YumiMediationSDK/YumiAdsSplash.h>
+  #import <YumiMediationSDK/YumiMediationSplash.h>
+
+  @interface AppDelegate () <YumiMediationSplashAdDelegate>
+
+  @property (nonatomic) YumiMediationSplash *yumiSplash;
+
+  @end
+
+  @implementation AppDelegate
+    
+  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  	
+    self.yumiSplash = [[YumiMediationSplash alloc] initWithPlacementID:@"YOUR_PLACEMWNT_ID" channelID:@"YOUR_CHANNEL_ID" versionID:@"YOUR_VERSION_ID"];
+    self.yumiSplash.delegate = self;
+    
+      return YES;
+  }
+
+  @end
   ```
+
+- ##### set splash fetch time
+
+  ```objective-c
+  /// Ad load timeout, default 3s.
+  /// Baidu does`t support it
+  [self.yumiSplash setFetchTime:3]; 
+  ```
+
+- ##### set launch image
+
+  ```objective-c
+  /// The background image when splash is loaded, preferably the image of the APP launch
+  [self.yumiSplash setLaunchImage:[UIImage imageNamed:@"YOUR_IMAGENAME"]];
+  ```
+
+- ##### set splash orientation (only support Admob)
+
+  ```objective-c
+  /// splash orientation
+  [self.yumiSplash setInterfaceOrientation:UIInterfaceOrientationPortrait];
+  ```
+
 
 - ##### show splash full screen
 
   ```objective-c
-  //AppKey is a reserved field that can fill in an empty string.
-  [[YumiAdsSplash sharedInstance] showYumiAdsSplashWith:@"Your PlacementID"
-                                                 appKey:@"nullable" 
-                                     rootViewController:self.window.rootViewController 
-   											                       delegate:self];
+  [self.yumiSplash loadAdAndShowInWindow:[UIApplication sharedApplication].keyWindow];
   ```
 
 - ##### show splash with bottom custom view
 
   ```objective-c
-  //AppKey is a reserved field that can fill in an empty string.
-  UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-100,
-          [UIScreen mainScreen].bounds.size.width, 100)]; 
-  view.backgroundColor = [UIColor redColor];
-  //view is your customView.You can show your logo there.
-  //warning:view's frame is nonnull.
-  [[YumiAdsSplash sharedInstance] showYumiAdsSplashWith:@"Your PlacementID" 
-                                                 appKey:@"nullable" 
-                                       customBottomView:view
-                                     rootViewController:self.window.rootViewController 
-                                               delegate:self];
+  /// bottom view's height should not exceed 15% of the screen height.
+  UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.10)];
+  bottomView.backgroundColor = [UIColor redColor];
+  [self.yumiSplash loadAdAndShowInWindow:[UIApplication sharedApplication].keyWindow withBottomView:bottomView];
   ```
 
 - ##### Delegate implementation
 
   ```objective-c
-  - (void)yumiAdsSplashDidLoad:(YumiAdsSplash *)splash{
-      NSLog(@"yumiAdsSplashDidLoad.");
+  - (void)yumiMediationSplashAdSuccessToShow:(YumiMediationSplash *)splash {
+      NSLog(@"yumiMediationSplashAdSuccessToShow.");
   }
-  - (void)yumiAdsSplash:(YumiAdsSplash *)splash DidFailToLoad:(NSError *)error{
-      NSLog(@"yumiAdsSplash:DidFailToLoad: %@", error)
+  - (void)yumiMediationSplashAdFailToShow:(YumiMediationSplash *)splash withError:(NSError *)error {
+      NSLog(@"yumiMediationSplashAdFailToShow: %@", error);
   }
-  - (void)yumiAdsSplashDidClicked:(YumiAdsSplash *)splash{
-      NSLog(@"yumiAdsSplashDidClicked.");
+  - (void)yumiMediationSplashAdDidClick:(YumiMediationSplash *)splash {
+      NSLog(@"yumiMediationSplashAdDidClick.");
   }
-  - (void)yumiAdsSplashDidClosed:(YumiAdsSplash *)splash{
-      NSLog(@"yumiAdsSplashDidClosed.");
-  }
-  - (nullable UIImage *)yumiAdsSplashDefaultImage{
-      return UIImage;//Your default image when app start
+  - (void)yumiMediationSplashAdDidClose:(YumiMediationSplash *)splash {
+      NSLog(@"yumiMediationSplashAdDidClose.");
   }
   ```
+
 
 #### Native
 
@@ -597,10 +669,7 @@
   }
   ```
 
-## Debug Mode
-
-### TEST ID
-
+## TEST ID
 
 | Formats        | Slot(Placement) ID |
 | -------------- | ------------------ |
@@ -609,3 +678,26 @@
 | Rewarded Video | 5xmpgti4           |
 | Native         | atb3ke1i           |
 | Splash         | pwmf5r42           |
+
+
+## GDPR
+This documentation is provided for compliance with the European Union's General Data Protection Regulation (GDPR). 
+If you are collecting consent from your users, you can make use of APIs discussed below to inform YumiMobileSDK.
+Get more information, please visit our official website.
+### Set GDPR
+
+```objective-c
+typedef enum : NSUInteger {
+    /// The user has granted consent for personalized ads.
+    YumiMediationConsentStatusPersonalized,
+    /// The user has granted consent for non-personalized ads.
+    YumiMediationConsentStatusNonPersonalized,
+    /// The user has neither granted nor declined consent for personalized or non-personalized ads.
+    YumiMediationConsentStatusUnknown,
+} YumiMediationConsentStatus;
+```
+
+```objective-c
+// Your user's consent. In this case, the user has given consent to store and process personal information.
+[[YumiMediationGDPRManager sharedGDPRManager] updateNetworksConsentStatus:YumiMediationConsentStatusPersonalized];
+```

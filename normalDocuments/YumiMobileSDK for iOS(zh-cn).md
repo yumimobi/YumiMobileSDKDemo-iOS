@@ -20,9 +20,12 @@
             * [展示视频](#展示视频)   
             * [实现代理方法](#实现代理方法-2)   
          * [Splash](#splash)   
-            * [初始化及展示开屏](#初始化及展示开屏)   
-               * [展示全屏广告](#展示全屏广告)   
-               * [展示半屏广告](#展示半屏广告)   
+            * [初始化及展示开屏](#初始化及展示开屏)
+            * [设置开屏拉取时长](#设置开屏拉取时长)
+            * [设置开屏加载时的背景图片](#设置开屏加载时的背景图片)
+            * [设置开屏方向（只支持 Admob 平台）](#设置开屏方向（只支持-Admob-平台）)   
+            * [展示全屏广告](#展示全屏广告)   
+            * [展示半屏广告](#展示半屏广告)   
             * [实现代理方法](#实现代理方法-3)
          * [Native](#native)   
             * [初始化及请求](#初始化及请求) 
@@ -34,8 +37,9 @@
             * [原生模板广告](#原生模板广告)
             * [原生广告选项 YumiMediationNativeAdConfiguration](#原生广告选项-yumimediationnativeadconfiguration)  
             * [实现代理方法](#实现代理方法-4)   
-   * [调试模式](#调试模式) 
-      * [TEST ID](#TEST-ID)
+   * [TEST ID](#TEST-ID)
+   * [GDPR](#gdpr)
+         * [设置 GDPR](#设置-gdpr)
 
 # YumiMobileSDK iOS
 
@@ -117,6 +121,7 @@
       导入如图所示的系统动态库。
 
       ![ios06](resources/ios06.png) 
+
 
 ## 代码集成示例
 
@@ -248,8 +253,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
     self.yumiInterstitial = [[YumiMediationInterstitial alloc] 
                                            initWithPlacementID:@"Your PlacementID"
                                                      channelID:@"Your channelID"
-                                                     versionID:@"Your versionID"
-                                            rootViewController:self];
+                                                     versionID:@"Your versionID"];
     self.yumiInterstitial.delegate = self;
   }
   @end
@@ -261,7 +265,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
   //present YumiMediationInterstitial
   - (IBAction)presentYumiMediationInterstitial:(id)sender {
     if ([self.yumiInterstitial isReady]) {
-      [self.yumiInterstitial present];
+      [self.yumiInterstitial presentFromRootViewController:self]];
     } else {
       NSLog(@"Ad wasn't ready");
     }
@@ -272,18 +276,35 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
 
   ```objective-c
   //implementing YumiMediationInterstitial Delegate
-  - (void)yumiMediationInterstitialDidReceiveAd:(YumiMediationInterstitial *)interstitial{
-      NSLog(@"interstitialDidReceiveAd");
+  /// Tells the delegate that the interstitial ad request succeeded.
+  - (void)yumiMediationInterstitialDidReceiveAd:(YumiMediationInterstitial *)interstitial {
+    NSLog(@"YumiMediationInterstitialDidReceiveAd");
   }
+  /// Tells the delegate that the interstitial ad failed to load.
   - (void)yumiMediationInterstitial:(YumiMediationInterstitial *)interstitial
-                   didFailWithError:(YumiMediationError *)error{
-      NSLog(@"interstitial:didFailToReceiveAdWithError: %@", error)
+             didFailToLoadWithError:(YumiMediationError *)error {
+    NSLog(@"YumiMediationInterstitialDidFailToLoadWithError: %@", [error localizedDescription]);
   }
-  - (void)yumiMediationInterstitialWillDismissScreen:(YumiMediationInterstitial *)interstitial{
-      NSLog(@"interstitialWillDismissScreen");
+  /// Tells the delegate that the interstitial ad failed to show.
+  - (void)yumiMediationInterstitial:(YumiMediationInterstitial *)interstitial
+             didFailToShowWithError:(YumiMediationError *)error {
+    NSLog(@"YumiMediationInterstitialDidFailToShowWithError: %@", [error localizedDescription]);
   }
-  - (void)yumiMediationInterstitialDidClick:(YumiMediationInterstitial *)interstitial{
-      NSLog(@"interstitialDidClick");
+  /// Tells the delegate that the interstitial ad opened.
+  - (void)yumiMediationInterstitialDidOpen:(YumiMediationInterstitial *)interstitial {
+    NSLog(@"YumiMediationInterstitialDidOpen");
+  }
+  /// Tells the delegate that the interstitial ad start playing.
+  - (void)yumiMediationInterstitialDidStartPlaying:(YumiMediationInterstitial *)interstitial {
+    NSLog(@"YumiMediationInterstitialDidStartPlaying");
+  }
+  /// Tells the delegate that the interstitial is to be animated off the screen.
+  - (void)yumiMediationInterstitialDidClosed:(YumiMediationInterstitial *)interstitial {
+    NSLog(@"YumiMediationInterstitialDidClosed");
+  }
+  /// Tells the delegate that the interstitial ad has been clicked.
+  - (void)yumiMediationInterstitialDidClick:(YumiMediationInterstitial *)interstitial {
+    NSLog(@"YumiMediationInterstitialDidClick");
   }
   ```
 
@@ -321,17 +342,38 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
 - ##### 实现代理方法
 
   ```objective-c
-  - (void)yumiMediationVideoDidOpen:(YumiMediationVideo *)video{
-      NSLog(@"Opened reward video ad.");
+  /// Tells the delegate that the video ad was received.
+  - (void)yumiMediationVideoDidReceiveAd:(YumiMediationVideo *)video {
+      NSLog(@"YumiMediationVideoDidReceiveAd");
   }
-  - (void)yumiMediationVideoDidStartPlaying:(YumiMediationVideo *)video{
-      NSLog(@"Reward video ad started playing.");
+  /// Tells the delegate that the video ad failed to load.
+  - (void)yumiMediationVideo:(YumiMediationVideo *)video didFailToLoadWithError:(NSError *)error {
+      NSLog(@"YumiMediationVideoDidFailToLoadWithError:%@",[error localizedDescription]);
   }
-  - (void)yumiMediationVideoDidClose:(YumiMediationVideo *)video{
-      NSLog(@"Reward video ad is closed.");
+  /// Tells the delegate that the video ad failed to show.
+  - (void)yumiMediationVideo:(YumiMediationVideo *)video didFailToShowWithError:(NSError *)error {
+      NSLog(@"YumiMediationVideoDidFailToShowWithError:%@",[error localizedDescription]);
   }
-  - (void)yumiMediationVideoDidReward:(YumiMediationVideo *)video{
-      NSLog(@"is Rewarded");
+  /// Tells the delegate that the video ad opened.
+  - (void)yumiMediationVideoDidOpen:(YumiMediationVideo *)video {
+      NSLog(@"YumiMediationVideoDidOpen");
+  }
+  /// Tells the delegate that the video ad start playing.
+  - (void)yumiMediationVideoDidStartPlaying:(YumiMediationVideo *)video {
+      NSLog(@"YumiMediationVideoDidStartPlaying");
+  }
+  /// Tells the delegate that the video ad closed.
+  /// You can learn about the reward info by examining the ‘isRewarded’ value.
+  - (void)yumiMediationVideoDidClosed:(YumiMediationVideo *)video isRewarded:(BOOL)isRewarded {
+      NSLog(@"YumiMediationVideoDidClosedWithReward:%d",isRewarded);
+  }
+  /// Tells the delegate that the video ad has rewarded the user.
+  - (void)yumiMediationVideoDidReward:(YumiMediationVideo *)video {
+      NSLog(@"YumiMediationVideoDidReward");
+  }
+  /// Tells the delegate that the reward video ad has been clicked by the person.
+  - (void)yumiMediationVideoDidClick:(YumiMediationVideo *)video {
+      NSLog(@"YumiMediationVideoDidClick");
   }
   ```
 
@@ -344,52 +386,79 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
   例如：在您 `AppDelegate.m` 的 `application:didFinishLaunchingWithOptions:` 方法中。
 
   ```objective-c
-  #import <YumiMediationSDK/YumiAdsSplash.h>
+  #import <YumiMediationSDK/YumiMediationSplash.h>
+
+  @interface AppDelegate () <YumiMediationSplashAdDelegate>
+
+  @property (nonatomic) YumiMediationSplash *yumiSplash;
+
+  @end
+
+  @implementation AppDelegate
+    
+  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  	
+    self.yumiSplash = [[YumiMediationSplash alloc] initWithPlacementID:@"YOUR_PLACEMWNT_ID" channelID:@"YOUR_CHANNEL_ID" versionID:@"YOUR_VERSION_ID"];
+    self.yumiSplash.delegate = self;
+    
+      return YES;
+  }
+
+  @end
   ```
 
-- ###### 展示全屏广告
-
+- ##### 设置开屏拉取时长
   ```objective-c
-  //appKey 为预留字段，可填空字符串。
-  [[YumiAdsSplash sharedInstance] showYumiAdsSplashWith:@"Your PlacementID"
-                                                 appKey:@"nullable" 
-                                     rootViewController:self.window.rootViewController 
-                                               delegate:self]
+  /// 拉取广告超时时间，默认3s。在该超时时间内，如果广告拉取成功，则立马展示开屏广告，否则放弃此次广告展示机会。
+  /// 百度 平台不支持 这个参数
+  [self.yumiSplash setFetchTime:3]; 
   ```
 
-- ###### 展示半屏广告
+- ##### 设置开屏加载时的背景图片
 
   ```objective-c
-  //appKey 为预留字段，可填空字符串。
-  UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-100,
-          [UIScreen mainScreen].bounds.size.width, 100)]; 
-  view.backgroundColor = [UIColor redColor];
-  //view is your customView.You can show your logo there.
-  //warning:view's frame is nonnull.
-  [[YumiAdsSplash sharedInstance] showYumiAdsSplashWith:@"Your PlacementID" 
-                                                 appKey:@"nullable" 
-                                       customBottomView:view
-                                     rootViewController:self.window.rootViewController 
-                                               delegate:self];
+  /// 开屏加载时的背景图片，最好是 APP 启动的 launch image
+  [self.yumiSplash setLaunchImage:[UIImage imageNamed:@"YOUR_IMAGENAME"]];
+  ```
+
+- ##### 设置开屏方向（只支持 Admob 平台）
+
+  ```objective-c
+  /// 开屏的方向
+  [self.yumiSplash setInterfaceOrientation:UIInterfaceOrientationPortrait];
+  ```
+
+
+
+- ##### 展示全屏广告
+
+  ```objective-c
+  [self.yumiSplash loadAdAndShowInWindow:[UIApplication sharedApplication].keyWindow];
+  ```
+
+- ##### 展示半屏广告
+
+  ```objective-c
+  /// bottom view 的高度不能超过屏幕高度的15%
+  UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.10)];
+  bottomView.backgroundColor = [UIColor redColor];
+  [self.yumiSplash loadAdAndShowInWindow:[UIApplication sharedApplication].keyWindow withBottomView:bottomView];
   ```
 
 - ##### 实现代理方法
 
   ```objective-c
-  - (void)yumiAdsSplashDidLoad:(YumiAdsSplash *)splash{
-      NSLog(@"yumiAdsSplashDidLoad.");
+  - (void)yumiMediationSplashAdSuccessToShow:(YumiMediationSplash *)splash {
+      NSLog(@"yumiMediationSplashAdSuccessToShow.");
   }
-  - (void)yumiAdsSplash:(YumiAdsSplash *)splash DidFailToLoad:(NSError *)error{
-      NSLog(@"yumiAdsSplash:DidFailToLoad: %@", error)
+  - (void)yumiMediationSplashAdFailToShow:(YumiMediationSplash *)splash withError:(NSError *)error {
+      NSLog(@"yumiMediationSplashAdFailToShow: %@", error);
   }
-  - (void)yumiAdsSplashDidClicked:(YumiAdsSplash *)splash{
-      NSLog(@"yumiAdsSplashDidClicked.");
+  - (void)yumiMediationSplashAdDidClick:(YumiMediationSplash *)splash {
+      NSLog(@"yumiMediationSplashAdDidClick.");
   }
-  - (void)yumiAdsSplashDidClosed:(YumiAdsSplash *)splash{
-      NSLog(@"yumiAdsSplashDidClosed.");
-  }
-  - (nullable UIImage *)yumiAdsSplashDefaultImage{
-      return UIImage;//Your default image when app start
+  - (void)yumiMediationSplashAdDidClose:(YumiMediationSplash *)splash {
+      NSLog(@"yumiMediationSplashAdDidClose.");
   }
   ```
 
@@ -624,10 +693,7 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
   }
    ```
 
-## 调试模式
-
-### TEST ID
-
+## TEST ID
 
 | 广告类型           | Slot(Placement) ID |
 | -------------- | ------------------ |
@@ -638,5 +704,24 @@ typedef NS_ENUM(NSUInteger, YumiMediationAdViewBannerSize) {
 | Splash         | pwmf5r42           |
 
 
+## GDPR
+本文件是为遵守欧洲联盟的一般数据保护条例(GDPR)而提供的。
+自 YumiMobileSDK 4.1.0 起，如果您正在收集用户的信息，您可以使用下面提供的api将此信息通知给 YumiMobileSDK 。
+更多信息请查看我们的官网。
+### 设置 GDPR
 
+```objective-c
+typedef enum : NSUInteger {
+    /// The user has granted consent for personalized ads.
+    YumiMediationConsentStatusPersonalized,
+    /// The user has granted consent for non-personalized ads.
+    YumiMediationConsentStatusNonPersonalized,
+    /// The user has neither granted nor declined consent for personalized or non-personalized ads.
+    YumiMediationConsentStatusUnknown,
+} YumiMediationConsentStatus;
+```
 
+```objective-c
+// Your user's consent. In this case, the user has given consent to store and process personal information.
+[[YumiMediationGDPRManager sharedGDPRManager] updateNetworksConsentStatus:YumiMediationConsentStatusPersonalized];
+```
