@@ -1,5 +1,5 @@
 PODS:
-  - YumiMediationSDK (4.2.0)
+  - YumiMediationSDK (4.3.0)
 
 DEPENDENCIES:
   - YumiMediationSDK
@@ -9,8 +9,8 @@ SPEC REPOS:
     - YumiMediationSDK
 
 SPEC CHECKSUMS:
-  YumiMediationSDK: f34ed710eeed2ffbb7f752ef9d2948083dcddb20
+  YumiMediationSDK: ba25791cca69841a460d949826a7bef554179300
 
 PODFILE CHECKSUM: 0f2589eb1cf48e8b99b5d46c3d4e32c4600efbf0
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.7.5
