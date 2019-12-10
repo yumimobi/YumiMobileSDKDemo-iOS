@@ -453,10 +453,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.3.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yumi.YumiMobileSDKDemo;
+				MARKETING_VERSION = 4.5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zplay.popstar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "DevYuMi*";
+				PROVISIONING_PROFILE_SPECIFIER = Dis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -475,10 +475,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.3.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yumi.YumiMobileSDKDemo;
+				MARKETING_VERSION = 4.5.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zplay.popstar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "DevYuMi*";
+				PROVISIONING_PROFILE_SPECIFIER = Dis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
