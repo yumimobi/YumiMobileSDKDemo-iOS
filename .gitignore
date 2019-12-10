@@ -60,3 +60,4 @@ fastlane/screenshots
 iOSInjectionProject/
 fastlane/test_output
 distribution.p12
+fastlane/README.md
