@@ -1,16 +1,16 @@
 PODS:
-  - YumiMediationSDK (4.5.0)
+  - YumiMediationSDK (4.5.1)
 
 DEPENDENCIES:
   - YumiMediationSDK
 
 SPEC REPOS:
-  https://github.com/yumimobi/Specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - YumiMediationSDK
 
 SPEC CHECKSUMS:
-  YumiMediationSDK: 684fc42617c281a2706682ba722facca8d4c75cc
+  YumiMediationSDK: 73b9d2d09744f2f5505e17f583a1a8476f7f7bf0
 
-PODFILE CHECKSUM: 2453a00c69731678b110885ca11f853bdd000c4b
+PODFILE CHECKSUM: 5124935d1e1c26fa3a83d1d09c21b7aa6acfbf32
 
 COCOAPODS: 1.8.4
