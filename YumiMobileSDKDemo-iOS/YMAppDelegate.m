@@ -7,6 +7,9 @@
 //
 
 #import "YMAppDelegate.h"
+@import AppCenter;
+@import AppCenterAnalytics;
+@import AppCenterCrashes;
 
 @interface YMAppDelegate ()
 
@@ -17,6 +20,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [MSAppCenter start:@"4c6ee31d-e367-49e0-b21d-25c9af16d90a" withServices:@[
+      [MSAnalytics class],
+      [MSCrashes class]
+    ]];
     return YES;
 }
 

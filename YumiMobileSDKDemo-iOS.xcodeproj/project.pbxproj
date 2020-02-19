@@ -185,7 +185,7 @@
 				6D691C4722AF503F000D0E0A /* Sources */,
 				6D691C4822AF503F000D0E0A /* Frameworks */,
 				6D691C4922AF503F000D0E0A /* Resources */,
-				B97B02E3C25F90655F35D9FB /* [CP] Copy Pods Resources */,
+				514AA64804CDB77142C7017C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,7 +246,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B97B02E3C25F90655F35D9FB /* [CP] Copy Pods Resources */ = {
+		514AA64804CDB77142C7017C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -444,20 +444,20 @@
 			baseConfigurationReference = EE975C95BBDD187E32643DE2 /* Pods-YumiMobileSDKDemo-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2019121001;
-				DEVELOPMENT_TEAM = L5UE3EGW93;
+				CURRENT_PROJECT_VERSION = 2020021901;
+				DEVELOPMENT_TEAM = QX37QM2334;
 				INFOPLIST_FILE = "YumiMobileSDKDemo-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.0;
+				MARKETING_VERSION = 4.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zplay.popstar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Dis;
+				PROVISIONING_PROFILE_SPECIFIER = zplay;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -469,7 +469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2019121001;
+				CURRENT_PROJECT_VERSION = 2020021901;
 				DEVELOPMENT_TEAM = L5UE3EGW93;
 				INFOPLIST_FILE = "YumiMobileSDKDemo-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -477,10 +477,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.0;
+				MARKETING_VERSION = 4.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zplay.popstar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Dis;
+				PROVISIONING_PROFILE_SPECIFIER = "Dis-zplay*";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -1,16 +1,27 @@
 PODS:
-  - YumiMediationSDK (4.5.0)
+  - AppCenter (1.2.0):
+    - AppCenter/Analytics (= 1.2.0)
+    - AppCenter/Crashes (= 1.2.0)
+  - AppCenter/Analytics (1.2.0):
+    - AppCenter/Core
+  - AppCenter/Core (1.2.0)
+  - AppCenter/Crashes (1.2.0):
+    - AppCenter/Core
+  - YumiMediationSDK (4.5.1)
 
 DEPENDENCIES:
+  - AppCenter
   - YumiMediationSDK
 
 SPEC REPOS:
-  https://github.com/yumimobi/Specs.git:
+  https://github.com/CocoaPods/Specs.git:
+    - AppCenter
     - YumiMediationSDK
 
 SPEC CHECKSUMS:
-  YumiMediationSDK: 684fc42617c281a2706682ba722facca8d4c75cc
+  AppCenter: d0b68b2a7a87ac0aed78e66f36d87fd321d0a29c
+  YumiMediationSDK: 7c1a46b1a2f07570e01966ae2c340abd111e621e
 
-PODFILE CHECKSUM: 2453a00c69731678b110885ca11f853bdd000c4b
+PODFILE CHECKSUM: 995054fa1162c8da06757277efe35297cd871946
 
 COCOAPODS: 1.8.4

@@ -50,7 +50,7 @@
 
 2. Develop Environment
 
-   Xcode 7.0 and above. 
+   Xcode 11.0 and above. 
 
    iOS 8.0 and above.
 
