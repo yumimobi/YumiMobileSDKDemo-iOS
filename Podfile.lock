@@ -14,7 +14,7 @@ DEPENDENCIES:
   - YumiMediationSDK
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - AppCenter
     - YumiMediationSDK
 
@@ -22,6 +22,6 @@ SPEC CHECKSUMS:
   AppCenter: d0b68b2a7a87ac0aed78e66f36d87fd321d0a29c
   YumiMediationSDK: 7c1a46b1a2f07570e01966ae2c340abd111e621e
 
-PODFILE CHECKSUM: 995054fa1162c8da06757277efe35297cd871946
+PODFILE CHECKSUM: 45dfb312ee7bebf7c8a0acbf8ad83759d71d319b
 
 COCOAPODS: 1.8.4
